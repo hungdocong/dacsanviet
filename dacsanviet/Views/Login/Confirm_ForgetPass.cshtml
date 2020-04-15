@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Quên mật khẩu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string email = (string)ViewBag.email;
+}
+
+<!-- Start Maincontent  -->
+<section class="main-content-area error_pages">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                <div class="error-wrapper text-center">
+                    <div class="error-text">
+                        <img src="~/Asset/Client/img/logo/1.png"/>
+                       
+                        <h5>Đổi mật khẩu </h5>
+                        <p>Vui lòng nhập mật khẩu mới để tiến hành đăng nhập</p>
+                    </div>
+                    <div class="search-error product-search">
+                        <form class="text-center" id="frmChangePass" method="post">
+                            <input type="hidden" id="ChangeEmail" value="@email" >
+                            <div class="form-group">
+                                <label style="float:left">Nhập mật khẩu</label>
+                                <input type="password" class="input-text" id="change_pass" name="change_pass" placeholder="...">
+                            </div>
+                            <div class="form-group">
+                                <label style="float:left">Nhập lại mật khẩu</label>
+                                <input type="password" class="input-text" id="Re_change_pass" name="Re_change_pass" placeholder="...">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="btnChangePass" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Thay đổi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Maincontent  -->

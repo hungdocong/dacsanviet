@@ -1,42 +1,635 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{ 
+    var user = (dacsanviet.Models.Entity.User)Session["isLogin"];
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<!-- Mirrored from d29u17ylf1ylz9.cloudfront.net/organicfood-v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Oct 2018 01:52:32 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="793902975548-oji0vak26nh4vv1um19kn428hg0ha95t.apps.googleusercontent.com">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Asset/Client/img/logo/icon.png">
+    <!-- all css here -->
+
+    <link rel="stylesheet" href="Asset/Client/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/animate.css">
+    <link rel="stylesheet" href="Asset/Client/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/chosen.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/ionicons.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/meanmenu.min.css">
+    <link rel="stylesheet" href="Asset/Client/css/bundle.css">
+    <link rel="stylesheet" href="Asset/Client/css/style.css">
+    <link rel="stylesheet" href="Asset/Client/css/responsive.css">
+    <link href="~/Asset/Client/css/bootstrap-social.css" rel="stylesheet" />
+    <link href="~/Asset/Client/css/PNotifyBrightTheme.css" rel="stylesheet" />
+    <script src="Asset/Client/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <!-- Add your site or application content here -->
+    <!--organicfood wrapper start-->
+    <div class="organic_food_wrapper">
+        <!--Header start-->
+        <header class="header sticky-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header_wrapper_inner">
+
+                            <div class="logo col-xs-12">
+                                <a href="/">
+                                    <img src="Asset/Client/img/logo/1.png" alt="">
+                                </a>
+                            </div>
+                            @RenderPage("MainMenu.cshtml")
+
+                            <div class="header_right_info d-flex">
+                                <div class="search_box">
+                                    <div class="search_inner">
+                                        <form action="#">
+                                            <input type="text" placeholder="Tìm kiếm nông sản">
+                                            <button type="submit"><i class="ion-ios-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="mini__cart">
+                                    <div class="mini_cart_inner">
+                                        <div class="cart_icon">
+                                            <a href="#">
+                                                <span class="cart_icon_inner">
+                                                    <i class="ion-android-cart"></i>
+                                                    <span class="cart_count">2</span>
+                                                </span>
+                                                <!-- <span class="item_total">$65.00</span> -->
+                                            </a>
+                                        </div>
+                                        <!--Mini Cart Box-->
+                                        <div class="mini_cart_box cart_box_one">
+                                            <div class="mini_cart_item">
+                                                <div class="mini_cart_img">
+                                                    <a href="#">
+                                                        <img src="~/Asset/Client/img/cart/1.jpg" alt="">
+                                                        <span class="cart_count">1</span>
+                                                    </a>
+                                                </div>
+                                                <div class="cart_info">
+                                                    <h5><a href="product-details.html">Mushroom Burger</a></h5>
+                                                    <span class="cart_price">$75.99</span>
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="mini_cart_item">
+                                                <div class="mini_cart_img">
+                                                    <a href="#">
+                                                        <img src="~/Asset/Client/img/cart/2.jpg" alt="">
+                                                        <span class="cart_count">1</span>
+                                                    </a>
+                                                </div>
+                                                <div class="cart_info">
+                                                    <h5><a href="#">Country Burger</a></h5>
+                                                    <span class="cart_price">$48.99</span>
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="price_content">
+                                                <div class="cart_subtotals">
+                                                    <div class="price_inline">
+                                                        <span class="label">Subtotal </span>
+                                                        <span class="value">$143.49 </span>
+                                                    </div>
+                                                    <div class="price_inline">
+                                                        <span class="label">Shipping </span>
+                                                        <span class="value">$7.00</span>
+                                                    </div>
+                                                    <div class="price_inline">
+                                                        <span class="label">Taxes </span>
+                                                        <span class="value">$0.00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="cart-total-price">
+                                                    <span class="label">Total </span>
+                                                    <span class="value">$85.99</span>
+                                                </div>
+                                            </div>
+                                            <div class="min_cart_checkout">
+                                                <a href="checkout.html">Checkout</a>
+                                            </div>
+                                        </div>
+                                        <!--Mini Cart Box End -->
+                                    </div>
+                                </div>
+                                <div class="header_account">
+                                    @if (user != null)
+                                    {
+                                        <div class="account_inner">
+                                            Hi! <a href="#" style="color: green; font-size: 15px; font-style: italic;">@user.firstName</a>
+                                        </div>
+                                        <div class="content-setting-dropdown" style="display: none;">
+                                            <div class="language-selector-wrapper">
+                                                <div class="language-selector">
+                                                    <ul>
+                                                        <li><a href=""><i class="fa fa-users" style="padding-right: 5px;"></i>Tài khoản</a></li>
+                                                        <li><a href=""><i class="fa fa-check" style="padding-right: 5px;"></i>Thanh toán</a></li>
+                                                        <li><a href="/logout"><i class="fa fa-sign-out" style="padding-right: 5px;"></i>Thoát tài khoản</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" id="btnOpen" class="btn btn-outline-success" data-toggle="modal"
+                                                data-target="#isLogin">
+                                            <i class="fa fa-user pr-2"></i>Đăng nhập
+                                        </button>
+                                    }
+                                    <!-- Modal: isLogin -->
+                                    <div class="modal fade" id="isLogin" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <!--Body-->
+                                                <div class="modal-body">
+
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs md-tabs nav-justified primary-color"
+                                                        style="font-size: 20px;" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-toggle="tab"
+                                                               href="#panel555" role="tab">
+                                                                <i class="fa fa-user pr-2"></i>Đăng nhập
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#panel666"
+                                                               role="tab">
+                                                                <i class="fa fa-address-book pr-2"></i>Tạo tài
+                                                                khoản
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Nav tabs -->
+                                                    <!-- Tab panels -->
+                                                    <div class="tab-content">
+
+                                                        <!-- Panel 1 -->
+                                                        <div class="tab-pane fade in show active" id="panel555"
+                                                             role="tabpanel">
+
+                                                            <!-- Nav tabs -->
+
+                                                            <div class="row">
+                                                                <div class="container">
+                                                                    <form class="text-center" id="frmLogin" style="color: #757575; padding: 25px;" method="post">
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">E-mail</label>
+                                                                            <input type="email" id="loginEmail" name="loginEmail" class="form-control mb-4" placeholder="Nhập email">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">Mật khẩu</label>
+                                                                            <input type="password" id="loginPass" name="loginPass" class="form-control mb-4" placeholder="Nhập mật khẩu">
+                                                                        </div>
+
+                                                                        <div class="d-flex justify-content-around">
+                                                                            <div style="padding-bottom: 10px;">
+                                                                                <!-- Forgot password -->
+                                                                                <a href="" onclick="click_btnClose();"  data-toggle="modal" data-target="#forgetPass">Quên mật khẩu?</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Sign in button -->
+                                                                        <button type="submit" id="UserLogin" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Đăng nhập</button>
+                                                                        <a href="/Login/LoginFacebook" class="btn btn-block btn-social btn-facebook" style="padding-left: 125px; border-radius:5px">
+                                                                            <span class="fa fa-facebook"></span>
+                                                                            Đăng nhập bằng Facebook
+                                                                        </a>
+                                                                        
+                                                                    <div id="gSignInWrapper" style="margin-top:8px">
+                                                                        <span class="label"></span>
+                                                                        <div id="customBtn">
+                                                                            <a class="btn btn-block btn-social btn-google" style="padding-left: 133px; border-radius:5px; height:0%">
+                                                                                <span class="fa fa-google"></span> Đăng nhập bằng Google
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Nav tabs -->
+
+                                                        </div>
+                                                        <!-- Panel 1 -->
+                                                        <!-- Panel 2 -->
+                                                        <div class="tab-pane fade" id="panel666" role="tabpanel">
+
+                                                            <div class="row">
+                                                                <div class="container">
+                                                                    @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { id = "registerUser" }))
+                                                                    {
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">Họ và tên</label>
+                                                                            <input type="text" id="firstName" name="firstName" class="form-control mb-4" placeholder="Nhập Họ và tên">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">E-mail</label>
+                                                                            <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Nhập E-mail">
+                                                                            <span id="email_error" style="color:red"></span>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">Mật khẩu</label>
+                                                                            <input type="password" id="passWord" name="passWord" class="form-control mb-4" placeholder="Mật khẩu từ 6 đến 32 ký tự">
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">Ngày sinh</label>
+                                                                            <input type="date" id="birthday" name="birthday" class="form-control mb-4">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label style="float: left;">Giới tính</label>
+                                                                            <select name="gender">
+                                                                                <option value="true">Nam</option>
+                                                                                <option value="false">Nữ</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <!-- Sign in button -->
+                                                                        <button type="submit" id="submitRegister" class="btn btn-success btn-lg btn-block">Tạo tài khoản</button>
+
+                                                                        <p style="margin-bottom: -25px; font-size: 12px; line-height: 22px;">
+                                                                            Khi bạn nhấn Đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo
+                                                                            <a target="_blank" href="#" rel="noreferrer">
+                                                                                điều kiện sử dụng và chính sách của Nông sản Việt Nam
+                                                                            </a>.
+                                                                        </p>
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Panel 2 -->
+
+                                                    </div>
+                                                    <!-- Tab panels -->
+
+                                                </div>
+                                                <!--Footer-->
+                                                <div class="modal-footer">
+                                                    <button type="button" id="btnClose" class="btn btn-outline-primary"
+                                                            data-dismiss="modal">
+                                                        Đóng
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal: isLogin -->
+
+                                    <!--Modal forgetPass-->
+                                    <div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="smallmodalLabel">Quên mật khẩu?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <form class="text-center" style="color: #757575; padding: 25px;" method="post">
+                                                    <div class="form-group">
+                                                        <label style="float: left;">Vui lòng cung cấp email đăng nhập để lấy lại mật khẩu.</label>
+                                                        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control mb-4" placeholder="Nhập email">
+                                                    </div>
+                                                    <!-- Sign in button -->
+                                                    <button type="submit" id="btnSendMail" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Gửi</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </header>
+        <!--Header end-->
+
+        @RenderBody()
+
+        <!-- footer start -->
+        <footer class="footer pt-90">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-xs-12">
+                        <!--Single Footer-->
+                        <div class="single_footer widget">
+                            <div class="single_footer_widget_inner">
+                                <div class="footer_logo">
+                                    <a href="/"><img src="Asset/Client/img/logo/1.png" alt=""></a>
+                                </div>
+                                <div class="footer_content">
+                                    <p>Address: Hà Mòn - Đăk Hà - Kon Tum</p>
+                                    <p>Phone: +(000) 800 456 789</p>
+                                    <p>Email: hungdocong82@gmail.com</p>
+                                </div>
+                                <div class="footer_social">
+                                    <h4>Get in Touch:</h4>
+                                    <div class="footer_social_icon">
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-youtube"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Single Footer-->
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-xs-12">
+                        <div class="footer_menu_list d-flex justify-content-between">
+                            <!--Single Footer-->
+                            <div class="single_footer widget">
+                                <div class="single_footer_widget_inner">
+                                    <div class="footer_title">
+                                        <h2>Sản phẩm</h2>
+                                    </div>
+                                    <div class="footer_menu">
+                                        <ul>
+                                            <li><a href="#">Giảm giá</a></li>
+                                            <li><a href="#">Sản phẩm mới</a></li>
+                                            <li><a href="#">Bán chạy</a></li>
+                                            <li><a href="#">Liên hệ</a></li>
+                                            <li><a href="#">Tài khoản</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Single footer end-->
+                            <!--Single footer start-->
+                            <div class="single_footer widget">
+                                <div class="single_footer_widget_inner">
+                                    <div class="footer_title">
+                                        <h2>Đăng nhập</h2>
+                                    </div>
+                                    <div class="footer_menu">
+                                        <ul>
+                                            <li><a href="#">Bản đồ</a></li>
+                                            <li><a href="#">Cửa hàng</a></li>
+                                            <li><a href="#">Đăng nhập</a></li>
+                                            <li><a href="#">Liên hệ</a></li>
+                                            <li><a href="#">Tài khoản</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Single Footer end-->
+                            <!--Single footer start-->
+                            <div class="single_footer widget">
+                                <div class="single_footer_widget_inner">
+                                    <div class="footer_title">
+                                        <h2>Tài khoản</h2>
+                                    </div>
+                                    <div class="footer_menu">
+                                        <ul>
+                                            <li><a href="#">Thông tin tài khoản</a></li>
+                                            <li><a href="#"> Đã đặt hàng</a></li>
+                                            <li><a href="#"> Đăng nhập</a></li>
+                                            <li><a href="#"> Thanh toán trực tuyến</a></li>
+                                            <li><a href="#"> Địa chỉ</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Single Footer end-->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-xs-12">
+                        <div class="footer_title">
+                            <h2> Tham gia cùng chúng tôi </h2>
+                        </div>
+                        <div class="footer_news_letter">
+                            <p>Gửi email cho tôi khi có chương trình khuyến mãi hoặc giảm giá</p>
+                            <div class="newsletter_form">
+                                <form action="#">
+                                    <input type="email" required placeholder="Email của bạn">
+                                    <input type="submit" value="Gửi">
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <div class="copyright_text">
+                                <p>Copyright 2020 <a href="#">NôngsanVietNam</a>. All Rights Reserved</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <div class="footer_mastercard text-right">
+                                <a href="#"><img src="Asset/Client/img/brand/payment.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+
+        <!-- footer end -->
+
+
+
+    </div>
+
+    <!-- modal area start -->
+    <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body shop">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
+                                <div class="product-flags madal">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="imgeone" role="tabpanel">
+                                            <div class="product_tab_img">
+                                                <a href="#"><img src="Asset/Client/img/cart/nav12.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="imgetwo" role="tabpanel">
+                                            <div class="product_tab_img">
+                                                <a href="#"><img src="Asset/Client/img/cart/nav11.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="imgethree" role="tabpanel">
+                                            <div class="product_tab_img">
+                                                <a href="#"><img src="Asset/Client/img/cart/nav13.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="products_tab_button  modals">
+                                        <ul class="nav product_navactive" role="tablist">
+                                            <li>
+                                                <a class="nav-link active" data-toggle="tab" href="#imgeone" role="tab" aria-controls="imgeone" aria-selected="false"><img src="Asset/Client/img/cart/nav.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link" data-toggle="tab" href="#imgetwo" role="tab" aria-controls="imgetwo" aria-selected="false"><img src="Asset/Client/img/cart/nav1.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link button_three" data-toggle="tab" href="#imgethree" role="tab" aria-controls="imgethree" aria-selected="false"><img src="Asset/Client/img/cart/nav2.jpg" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="modal_right">
+                                    <div class="shop_reviews">
+                                        <div class="demo_product">
+                                            <h2>Sprite Yoga Straps1</h2>
+                                        </div>
+                                        <div class="current_price">
+                                            <span class="regular">$64.99</span>
+                                            <span class="regular_price">$78.99</span>
+                                        </div>
+                                        <div class="product_information product_modal">
+                                            <div id="product_modal_content">
+                                                <p>Short-sleeved blouse with feminine draped sleeve detail.</p>
+                                            </div>
+                                            <div class="product_variants">
+                                                <div class="product_variants_item modal_item">
+                                                    <span class="control_label">Size</span>
+                                                    <select id="group_1">
+                                                        <option value="1">S</option>
+                                                        <option value="2" selected="selected">M</option>
+                                                        <option value="3">L</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="quickview_plus_minus">
+                                                    <span class="control_label">Quantity</span>
+                                                    <div class="quickview_plus_minus_inner">
+                                                        <div class="cart-plus-minus">
+                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                                        </div>
+                                                        <div class="add_button add_modal">
+                                                            <button type="submit"> Add to cart</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cart_description">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="social-share">
+                                    <h3>Share this product</h3>
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- modal area end -->
+    <!-- all js here -->
+    <script src="Asset/Client/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="Asset/Client/js/popper.js"></script>
+    <script src="Asset/Client/js/bootstrap.min.js"></script>
+    <script src="Asset/Client/js/jquery.meanmenu.min.js"></script>
+    <script src="Asset/Client/js/isotope.pkgd.min.js"></script>
+    <script src="Asset/Client/js/imagesloaded.pkgd.min.js"></script>
+    <script src="Asset/Client/js/jquery.counterup.min.js"></script>
+    <script src="Asset/Client/js/waypoints.min.js"></script>
+    <script src="Asset/Client/js/ajax-mail.js"></script>
+    <script src="Asset/Client/js/owl.carousel.min.js"></script>
+    <script src="~/Asset/Client/js/jquery.validate.min.js"></script>
+    <script src="Asset/Client/js/plugins.js"></script>
+    <script src="Asset/Client/js/main.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+    <script src="~/Asset/Client/notify/notify.js"></script>
+    <script src="~/Asset/Client/notify/PNotify.js"></script>
+    <script src="~/Asset/Client/js/login_register.js"></script>
+    <script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        var googleUser = {};
+        var startApp = function () {
+            gapi.load('auth2', function () {
+                // Retrieve the singleton for the GoogleAuth library and set up the client.
+                auth2 = gapi.auth2.init({
+                    client_id: '793902975548-oji0vak26nh4vv1um19kn428hg0ha95t.apps.googleusercontent.com',
+                    cookiepolicy: 'single_host_origin',
+                    // Request scopes in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+                attachSignin(document.getElementById('customBtn'));
+            });
+        };
+
+        function attachSignin(element) {
+            auth2.attachClickHandler(element, {},
+                function (googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    $.ajax({
+                        type: "POST",
+                        url: "Login/LoginGmail",
+                        data: {
+                            email: profile.getEmail(),
+                            fullname: profile.getName()
+                        },
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.status == true) {
+                                window.location.href = "/"
+                            }
+                        }
+                    })
+                    
+                });
+        }
+    </script>
+    <script>
+        startApp();
+        function click_btnClose() {
+            $('#btnClose').click();
+        }
+    </script>
 </body>
+
+<!-- Mirrored from d29u17ylf1ylz9.cloudfront.net/organicfood-v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Oct 2018 01:53:35 GMT -->
 </html>

@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dacsanvietModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="About">
+    <Key>
+      <PropertyRef Name="about_ID" />
+    </Key>
+    <Property Name="about_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="250" />
+    <Property Name="metatitle" Type="varchar" MaxLength="250" />
+    <Property Name="description" Type="nvarchar" MaxLength="250" />
+    <Property Name="image" Type="nvarchar" MaxLength="250" />
+    <Property Name="detail" Type="ntext" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="nvarchar" MaxLength="150" />
+    <Property Name="metaKeywords" Type="nvarchar" MaxLength="250" />
+    <Property Name="metaDescriptions" Type="nvarchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="company_ID" />
+    </Key>
+    <Property Name="company_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="phone" Type="nchar" MaxLength="50" />
+    <Property Name="fax" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FeedBack">
+    <Key>
+      <PropertyRef Name="feedBack_ID" />
+    </Key>
+    <Property Name="feedBack_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="250" />
+    <Property Name="content" Type="nvarchar" MaxLength="500" />
+    <Property Name="status" Type="bit" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="product_ID" Type="bigint" />
+    <Property Name="about_ID" Type="bigint" />
+    <Property Name="news_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Footer">
+    <Key>
+      <PropertyRef Name="footer_ID" />
+    </Key>
+    <Property Name="footer_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="content" Type="ntext" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="menu_ID" />
+    </Key>
+    <Property Name="menu_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="50" />
+    <Property Name="link" Type="nvarchar" MaxLength="250" />
+    <Property Name="displayOrder" Type="int" />
+    <Property Name="target" Type="nvarchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+    <Property Name="menuType_ID" Type="bigint" />
+    <Property Name="menuParent_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MenuType">
+    <Key>
+      <PropertyRef Name="menuType_ID" />
+    </Key>
+    <Property Name="menuType_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menuName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="news_ID" />
+    </Key>
+    <Property Name="news_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="250" />
+    <Property Name="metatile" Type="varchar" MaxLength="250" />
+    <Property Name="descriptions" Type="nvarchar" MaxLength="500" />
+    <Property Name="newImage" Type="nvarchar" MaxLength="250" />
+    <Property Name="categories" Type="int" />
+    <Property Name="detail" Type="ntext" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="metaKeywords" Type="nvarchar" MaxLength="250" />
+    <Property Name="metaDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+    <Property Name="topHot" Type="nchar" MaxLength="100" />
+    <Property Name="viewCount" Type="int" />
+    <Property Name="tag_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="order_ID" />
+    </Key>
+    <Property Name="order_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_ID" Type="bigint" />
+    <Property Name="totalMoney" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="date" Type="nchar" MaxLength="100" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="orderDetail_ID" />
+    </Key>
+    <Property Name="orderDetail_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_ID" Type="bigint" />
+    <Property Name="product_ID" Type="bigint" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="product_ID" />
+    </Key>
+    <Property Name="product_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productCode" Type="varchar" MaxLength="10" />
+    <Property Name="productName" Type="nvarchar" MaxLength="250" />
+    <Property Name="metatitle" Type="varchar" MaxLength="250" />
+    <Property Name="descriptions" Type="nvarchar" MaxLength="500" />
+    <Property Name="productImage" Type="nvarchar" MaxLength="250" />
+    <Property Name="moreImage" Type="xml" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="promotionPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="includeVAT" Type="bit" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="productCategory_ID" Type="bigint" />
+    <Property Name="detail" Type="ntext" />
+    <Property Name="warranty" Type="int" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="metaKeywords" Type="nvarchar" MaxLength="250" />
+    <Property Name="metaDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+    <Property Name="topHot" Type="nchar" MaxLength="100" />
+    <Property Name="viewCount" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="productCategory_ID" />
+    </Key>
+    <Property Name="productCategory_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="metatitle" Type="nvarchar" MaxLength="250" />
+    <Property Name="parentID" Type="int" />
+    <Property Name="displayOrder" Type="int" />
+    <Property Name="seoTitle" Type="nvarchar" MaxLength="250" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="metaKeywords" Type="nvarchar" MaxLength="250" />
+    <Property Name="metaDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+    <Property Name="showOnHome" Type="bit" />
+  </EntityType>
+  <EntityType Name="Slide">
+    <Key>
+      <PropertyRef Name="slide_ID" />
+    </Key>
+    <Property Name="slide_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="250" />
+    <Property Name="displayOrder" Type="int" />
+    <Property Name="link" Type="nchar" MaxLength="250" />
+    <Property Name="description" Type="nvarchar" MaxLength="250" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="shop_ID" />
+    </Key>
+    <Property Name="shop_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="250" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="fax" Type="varchar" MaxLength="50" />
+    <Property Name="product_ID" Type="bigint" />
+    <Property Name="company_ID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="tag_ID" />
+    </Key>
+    <Property Name="tag_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transaction_ID" />
+    </Key>
+    <Property Name="transaction_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_ID" Type="bigint" />
+    <Property Name="totalMoney" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="payment" Type="nvarchar" MaxLength="50" />
+    <Property Name="payment_info" Type="nvarchar" MaxLength="250" />
+    <Property Name="message" Type="nvarchar" MaxLength="250" />
+    <Property Name="security" Type="varchar" MaxLength="16" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="user_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nchar" MaxLength="100" />
+    <Property Name="passWord" Type="varchar" MaxLength="32" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="birthday" Type="nchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="250" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="typeLogin" Type="int" />
+    <Property Name="createdDate" Type="nchar" MaxLength="100" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" />
+    <Property Name="modifiedDate" Type="nchar" MaxLength="100" />
+    <Property Name="modifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="bit" />
+  </EntityType>
+  <Association Name="FK_FeedBack_About">
+    <End Role="About" Type="Self.About" Multiplicity="0..1" />
+    <End Role="FeedBack" Type="Self.FeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="About">
+        <PropertyRef Name="about_ID" />
+      </Principal>
+      <Dependent Role="FeedBack">
+        <PropertyRef Name="about_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeedBack_News">
+    <End Role="News" Type="Self.News" Multiplicity="0..1" />
+    <End Role="FeedBack" Type="Self.FeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="news_ID" />
+      </Principal>
+      <Dependent Role="FeedBack">
+        <PropertyRef Name="news_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeedBack_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="FeedBack" Type="Self.FeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_ID" />
+      </Principal>
+      <Dependent Role="FeedBack">
+        <PropertyRef Name="product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_MenuType">
+    <End Role="MenuType" Type="Self.MenuType" Multiplicity="0..1" />
+    <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuType">
+        <PropertyRef Name="menuType_ID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="menuType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Tag">
+    <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="tag_ID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="tag_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_news_tag_id">
+    <End Role="Tag" Type="Self.Tag" Multiplicity="0..1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="tag_ID" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="tag_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="order_ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="order_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_ID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductCategory">
+    <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="productCategory_ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="productCategory_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="company_ID" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="company_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="product_ID" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="dacsanvietModelStoreContainer">
+    <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Footer" EntityType="Self.Footer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuType" EntityType="Self.MenuType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slide" EntityType="Self.Slide" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FeedBack_About" Association="Self.FK_FeedBack_About">
+      <End Role="About" EntitySet="About" />
+      <End Role="FeedBack" EntitySet="FeedBack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeedBack_News" Association="Self.FK_FeedBack_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="FeedBack" EntitySet="FeedBack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeedBack_Product" Association="Self.FK_FeedBack_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="FeedBack" EntitySet="FeedBack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_MenuType" Association="Self.FK_Menu_MenuType">
+      <End Role="MenuType" EntitySet="MenuType" />
+      <End Role="Menu" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Tag" Association="Self.FK_News_Tag">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="fk_news_tag_id" Association="Self.fk_news_tag_id">
+      <End Role="Tag" EntitySet="Tag" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Product" Association="Self.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductCategory" Association="Self.FK_Product_ProductCategory">
+      <End Role="ProductCategory" EntitySet="ProductCategory" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_Company" Association="Self.FK_Store_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_Product" Association="Self.FK_Store_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

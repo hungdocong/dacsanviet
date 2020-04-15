@@ -45,10 +45,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,13 +137,242 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Business\UserBusiness.cs" />
+    <Compile Include="Models\DTO\MD5.cs" />
+    <Compile Include="Models\Entity\About.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Company.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\FeedBack.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Footer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Menu.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\MenuType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\News.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\OrderDetail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Product.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\ProductCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Slide.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Store.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\sysdiagram.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tag.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Transaction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\User.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\Client\css\animate.css" />
+    <Content Include="Asset\Client\css\bootstrap-social.css" />
+    <Content Include="Asset\Client\css\bootstrap.min.css" />
+    <Content Include="Asset\Client\css\bundle.css" />
+    <Content Include="Asset\Client\css\chosen-sprite%402x.png" />
+    <Content Include="Asset\Client\css\chosen-sprite.png" />
+    <Content Include="Asset\Client\css\chosen.min.css" />
+    <Content Include="Asset\Client\css\font-awesome.min.css" />
+    <Content Include="Asset\Client\css\icofont.css" />
+    <Content Include="Asset\Client\css\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Asset\Client\css\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Asset\Client\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Asset\Client\css\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Asset\Client\css\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Asset\Client\css\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Asset\Client\css\ionicons.min.css" />
+    <Content Include="Asset\Client\css\jquery-ui.css" />
+    <Content Include="Asset\Client\css\magnific-popup.css" />
+    <Content Include="Asset\Client\css\material-design-iconic-font.min.css" />
+    <Content Include="Asset\Client\css\meanmenu.min.css" />
+    <Content Include="Asset\Client\css\owl.carousel.min.css" />
+    <Content Include="Asset\Client\css\owl.video.play.png" />
+    <Content Include="Asset\Client\css\PNotifyBrightTheme.css" />
+    <Content Include="Asset\Client\css\responsive.css" />
+    <Content Include="Asset\Client\css\style.css" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Asset\Client\fonts\icofont7858.svg" />
+    <Content Include="Asset\Client\fonts\ionicons28b5.svg" />
+    <Content Include="Asset\Client\img\1.jpg" />
+    <Content Include="Asset\Client\img\banner\1.jpg" />
+    <Content Include="Asset\Client\img\banner\2.jpg" />
+    <Content Include="Asset\Client\img\banner\3.jpg" />
+    <Content Include="Asset\Client\img\banner\about1.jpg" />
+    <Content Include="Asset\Client\img\banner\banner-4.jpg" />
+    <Content Include="Asset\Client\img\banner\banner-5.jpg" />
+    <Content Include="Asset\Client\img\banner\banner-6.jpg" />
+    <Content Include="Asset\Client\img\banner\banner1_home2.jpg" />
+    <Content Include="Asset\Client\img\banner\banner1_home4.jpg" />
+    <Content Include="Asset\Client\img\banner\banner2_home2.jpg" />
+    <Content Include="Asset\Client\img\banner\banner3_home4.jpg" />
+    <Content Include="Asset\Client\img\banner\banner_right.jpg" />
+    <Content Include="Asset\Client\img\banner\bg_footer.jpg" />
+    <Content Include="Asset\Client\img\banner\bg_home4.jpg" />
+    <Content Include="Asset\Client\img\banner\bg_static2.png" />
+    <Content Include="Asset\Client\img\banner\big-1.jpg" />
+    <Content Include="Asset\Client\img\banner\big-2.jpg" />
+    <Content Include="Asset\Client\img\banner\frances2.jpg" />
+    <Content Include="Asset\Client\img\banner\healthy-melt.jpg" />
+    <Content Include="Asset\Client\img\banner\impulse-duffle.jpg" />
+    <Content Include="Asset\Client\img\banner\index.png" />
+    <Content Include="Asset\Client\img\banner\messenger-bag.jpg" />
+    <Content Include="Asset\Client\img\banner\shop.jpg" />
+    <Content Include="Asset\Client\img\banner\slider2_home4.jpg" />
+    <Content Include="Asset\Client\img\banner\slider_home4.jpg" />
+    <Content Include="Asset\Client\img\banner\static2_img_home2.jpg" />
+    <Content Include="Asset\Client\img\banner\static3_home13.jpg" />
+    <Content Include="Asset\Client\img\banner\static3_home3.jpg" />
+    <Content Include="Asset\Client\img\banner\team1.jpg" />
+    <Content Include="Asset\Client\img\banner\team2.jpg" />
+    <Content Include="Asset\Client\img\banner\team4.jpg" />
+    <Content Include="Asset\Client\img\banner\testi1.png" />
+    <Content Include="Asset\Client\img\banner\testi2.png" />
+    <Content Include="Asset\Client\img\banner\testi3.png" />
+    <Content Include="Asset\Client\img\banner\testimonial4.jpg" />
+    <Content Include="Asset\Client\img\blog\1.jpg" />
+    <Content Include="Asset\Client\img\blog\2.jpg" />
+    <Content Include="Asset\Client\img\blog\3.jpg" />
+    <Content Include="Asset\Client\img\blog\4.jpg" />
+    <Content Include="Asset\Client\img\blog\5.jpg" />
+    <Content Include="Asset\Client\img\blog\6.jpg" />
+    <Content Include="Asset\Client\img\blog\blog_details.jpg" />
+    <Content Include="Asset\Client\img\brand\1.png" />
+    <Content Include="Asset\Client\img\brand\2.png" />
+    <Content Include="Asset\Client\img\brand\3.png" />
+    <Content Include="Asset\Client\img\brand\4.png" />
+    <Content Include="Asset\Client\img\brand\5.png" />
+    <Content Include="Asset\Client\img\brand\payment.png" />
+    <Content Include="Asset\Client\img\cart\1.jpg" />
+    <Content Include="Asset\Client\img\cart\11.jpg" />
+    <Content Include="Asset\Client\img\cart\14.jpg" />
+    <Content Include="Asset\Client\img\cart\15.jpg" />
+    <Content Include="Asset\Client\img\cart\16.jpg" />
+    <Content Include="Asset\Client\img\cart\2.jpg" />
+    <Content Include="Asset\Client\img\cart\cart1.png" />
+    <Content Include="Asset\Client\img\cart\cart2.png" />
+    <Content Include="Asset\Client\img\cart\cart3.png" />
+    <Content Include="Asset\Client\img\cart\nav.jpg" />
+    <Content Include="Asset\Client\img\cart\nav1.jpg" />
+    <Content Include="Asset\Client\img\cart\nav11.jpg" />
+    <Content Include="Asset\Client\img\cart\nav12.jpg" />
+    <Content Include="Asset\Client\img\cart\nav13.jpg" />
+    <Content Include="Asset\Client\img\cart\nav2.jpg" />
+    <Content Include="Asset\Client\img\error.jpg" />
+    <Content Include="Asset\Client\img\favicon.png" />
+    <Content Include="Asset\Client\img\google.png" />
+    <Content Include="Asset\Client\img\logo\1.png" />
+    <Content Include="Asset\Client\img\logo\dacsanviet.jpg" />
+    <Content Include="Asset\Client\img\logo\icon.png" />
+    <Content Include="Asset\Client\img\logo\logo.png" />
+    <Content Include="Asset\Client\img\logo\logo_footer.png" />
+    <Content Include="Asset\Client\img\logo\logo_footer_home4.png" />
+    <Content Include="Asset\Client\img\mail.jpg" />
+    <Content Include="Asset\Client\img\product\1.jpg" />
+    <Content Include="Asset\Client\img\product\10.jpg" />
+    <Content Include="Asset\Client\img\product\103.jpg" />
+    <Content Include="Asset\Client\img\product\11.jpg" />
+    <Content Include="Asset\Client\img\product\12.jpg" />
+    <Content Include="Asset\Client\img\product\13.jpg" />
+    <Content Include="Asset\Client\img\product\2.jpg" />
+    <Content Include="Asset\Client\img\product\207.jpg" />
+    <Content Include="Asset\Client\img\product\3.jpg" />
+    <Content Include="Asset\Client\img\product\4.jpg" />
+    <Content Include="Asset\Client\img\product\5.jpg" />
+    <Content Include="Asset\Client\img\product\6.jpg" />
+    <Content Include="Asset\Client\img\product\7.jpg" />
+    <Content Include="Asset\Client\img\product\8.jpg" />
+    <Content Include="Asset\Client\img\product\9.jpg" />
+    <Content Include="Asset\Client\img\product\big-1.jpg" />
+    <Content Include="Asset\Client\img\ship\1.png" />
+    <Content Include="Asset\Client\img\ship\2.png" />
+    <Content Include="Asset\Client\img\ship\3.png" />
+    <Content Include="Asset\Client\img\ship\4.png" />
+    <Content Include="Asset\Client\img\slider\1.jpg" />
+    <Content Include="Asset\Client\img\slider\2.jpg" />
+    <Content Include="Asset\Client\img\slider\banner2_home3.jpg" />
+    <Content Include="Asset\Client\img\slider\home3.jpg" />
+    <Content Include="Asset\Client\img\success.jpg" />
+    <Content Include="Asset\Client\js\ajax-mail.js" />
+    <Content Include="Asset\Client\js\bootstrap.min.js" />
+    <Content Include="Asset\Client\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Asset\Client\js\isotope.pkgd.min.js" />
+    <Content Include="Asset\Client\js\jquery-ui.js" />
+    <Content Include="Asset\Client\js\jquery.countdown.min.js" />
+    <Content Include="Asset\Client\js\jquery.counterup.min.js" />
+    <Content Include="Asset\Client\js\jquery.meanmenu.min.js" />
+    <Content Include="Asset\Client\js\jquery.validate.min.js" />
+    <Content Include="Asset\Client\js\login_register.js" />
+    <Content Include="Asset\Client\js\main.js" />
+    <Content Include="Asset\Client\js\map.js" />
+    <Content Include="Asset\Client\js\owl.carousel.min.js" />
+    <Content Include="Asset\Client\js\plugins.js" />
+    <Content Include="Asset\Client\js\popper.js" />
+    <Content Include="Asset\Client\js\vendor\jquery-1.12.0.min.js" />
+    <Content Include="Asset\Client\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Asset\Client\js\waypoints.min.js" />
+    <Content Include="Asset\Client\notify\notify.js" />
+    <Content Include="Asset\Client\notify\PNotify.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -135,8 +381,40 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Entity\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Entity\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Asset\Client\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Asset\Client\fonts\icofont7858.eot" />
+    <Content Include="Asset\Client\fonts\icofont7858.ttf" />
+    <Content Include="Asset\Client\fonts\icofont7858.woff" />
+    <Content Include="Asset\Client\fonts\ionicons28b5.eot" />
+    <Content Include="Asset\Client\fonts\ionicons28b5.ttf" />
+    <Content Include="Asset\Client\fonts\ionicons28b5.woff" />
+    <Content Include="Asset\Client\fonts\Material-Design-Iconic-Fontd1f1.ttf" />
+    <Content Include="Asset\Client\fonts\Material-Design-Iconic-Fontd1f1.woff" />
+    <Content Include="Asset\Client\fonts\Material-Design-Iconic-Fontd1f1.woff2" />
+    <EntityDeploy Include="Models\Entity\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Entity\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Area\Views\web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -157,15 +435,22 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\MainMenu.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register_Confirm.cshtml" />
+    <Content Include="Views\Login\Register_Success.cshtml" />
+    <Content Include="Views\Home\ErrorPage.cshtml" />
+    <Content Include="Views\Login\Confirm_ForgetPass.cshtml" />
+    <Content Include="Views\Login\SendMailChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\Area\Controllers\" />
+    <Folder Include="Areas\Area\Models\" />
+    <Folder Include="Areas\Area\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -179,6 +464,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

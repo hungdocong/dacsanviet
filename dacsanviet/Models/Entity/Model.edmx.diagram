@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="82bb97e4eba043a7a6e4c36e70550f2a" Name="Diagram1">
+        <EntityTypeShape EntityType="dacsanvietModel.About" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Company" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.FeedBack" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Footer" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Menu" Width="1.5" PointX="10" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.MenuType" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.News" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Order" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.OrderDetail" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Product" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.ProductCategory" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Slide" Width="1.5" PointX="10.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Store" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.sysdiagram" Width="1.5" PointX="10.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Tag" Width="1.5" PointX="0.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.Transaction" Width="1.5" PointX="8.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dacsanvietModel.User" Width="1.5" PointX="10.75" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="dacsanvietModel.FK_FeedBack_About" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_Store_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_FeedBack_News" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_FeedBack_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_Menu_MenuType" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_News_Tag" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.fk_news_tag_id" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_OrderDetail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_OrderDetail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_Product_ProductCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="dacsanvietModel.FK_Store_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
