@@ -16,7 +16,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/Asset/Client/img/logo/icon.png">
     <!-- all css here -->
-
+    <link href="~/Asset/Client/css/lib_UI_jquery_css_custom-theme_jquery-ui-1.9.2.custom.css" rel="stylesheet" />
     <link rel="stylesheet" href="Asset/Client/css/bootstrap.min.css">
     <link rel="stylesheet" href="Asset/Client/css/animate.css">
     <link rel="stylesheet" href="Asset/Client/css/owl.carousel.min.css">
@@ -206,7 +206,7 @@
                                                                         <div class="d-flex justify-content-around">
                                                                             <div style="padding-bottom: 10px;">
                                                                                 <!-- Forgot password -->
-                                                                                <a href="" onclick="click_btnClose();"  data-toggle="modal" data-target="#forgetPass">Quên mật khẩu?</a>
+                                                                                <a href="" onclick="click_btnClose();" data-toggle="modal" data-target="#forgetPass">Quên mật khẩu?</a>
                                                                             </div>
                                                                         </div>
                                                                         <!-- Sign in button -->
@@ -215,15 +215,15 @@
                                                                             <span class="fa fa-facebook"></span>
                                                                             Đăng nhập bằng Facebook
                                                                         </a>
-                                                                        
-                                                                    <div id="gSignInWrapper" style="margin-top:8px">
-                                                                        <span class="label"></span>
-                                                                        <div id="customBtn">
-                                                                            <a class="btn btn-block btn-social btn-google" style="padding-left: 133px; border-radius:5px; height:0%">
-                                                                                <span class="fa fa-google"></span> Đăng nhập bằng Google
-                                                                            </a>
+
+                                                                        <div id="gSignInWrapper" style="margin-top:8px">
+                                                                            <span class="label"></span>
+                                                                            <div id="customBtn">
+                                                                                <a class="btn btn-block btn-social btn-google" style="padding-left: 133px; border-radius:5px; height:0%">
+                                                                                    <span class="fa fa-google"></span> Đăng nhập bằng Google
+                                                                                </a>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
                                                                     </form>
                                                                 </div>
                                                             </div>
@@ -295,7 +295,6 @@
                                         </div>
                                     </div>
                                     <!-- Modal: isLogin -->
-
                                     <!--Modal forgetPass-->
                                     <div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" style="display: none;" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -569,8 +568,13 @@
     <!-- modal area end -->
     <!-- all js here -->
     <script src="Asset/Client/js/vendor/jquery-1.12.0.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>
     <script src="Asset/Client/js/popper.js"></script>
-    <script src="Asset/Client/js/bootstrap.min.js"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+    
     <script src="Asset/Client/js/jquery.meanmenu.min.js"></script>
     <script src="Asset/Client/js/isotope.pkgd.min.js"></script>
     <script src="Asset/Client/js/imagesloaded.pkgd.min.js"></script>
@@ -579,12 +583,19 @@
     <script src="Asset/Client/js/ajax-mail.js"></script>
     <script src="Asset/Client/js/owl.carousel.min.js"></script>
     <script src="~/Asset/Client/js/jquery.validate.min.js"></script>
+
+    <!--tab data-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js"></script>
+    <script src="~/Asset/Client/js/lib_UI_jquery_js_jquery-ui-1.9.2.custom.min.js"></script>
     <script src="Asset/Client/js/plugins.js"></script>
     <script src="Asset/Client/js/main.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
     <script src="~/Asset/Client/notify/notify.js"></script>
     <script src="~/Asset/Client/notify/PNotify.js"></script>
     <script src="~/Asset/Client/js/login_register.js"></script>
+
+    @RenderSection("jsSection", required: false)
+
     <script>
 
         var googleUser = {};
@@ -619,7 +630,7 @@
                             }
                         }
                     })
-                    
+
                 });
         }
     </script>
@@ -628,7 +639,15 @@
         function click_btnClose() {
             $('#btnClose').click();
         }
+
+        $('ul.nav li').on('click', function () {
+            $(this).parent().find('li.active').removeClass('active');
+            $(this).addClass('active');
+        });
+
+       
     </script>
+
 </body>
 
 <!-- Mirrored from d29u17ylf1ylz9.cloudfront.net/organicfood-v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Oct 2018 01:53:35 GMT -->

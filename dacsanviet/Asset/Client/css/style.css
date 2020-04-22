@@ -732,11 +732,19 @@
 .product_title h4 a:hover{
     color: #78a206;
 }
-.product_price > p{
-    color: #78a206;
+.product_price > p {
+    color: rgb(36, 36, 36);
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 0
+}
+
+p.origin_price {
+    text-decoration-line: line-through;
+    margin-left: 8px;
+    color: rgb(120, 120, 120);
+    font-weight: 300;
+    font-size: 13px;
 }
 .product__hover ul li {
   display: inline-block;
@@ -768,7 +776,8 @@
     transition: all 300ms ease-in 0s;
 }
 .product_price {
-  padding-bottom: 12px;
+    padding-bottom: 12px;
+    display: inline-flex;
 }
 .single__product .product__hover::before {
   background: #ebebeb none repeat scroll 0 0;
@@ -817,28 +826,30 @@
 .single__product:hover .single_product__inner,.single__product:hover .product__hover {
    border-color: #e6e9ec;
 }
-.single__product span {
-  background: #94c341 none repeat scroll 0 0;
-  border-radius: 3px;
-  color: #ffffff !important;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 400;
-  height: 25px;
-  left: 5px;
-  line-height: 25px;
-  min-width: 50px;
-  padding: 0 10px;
-  position: absolute;
-  text-align: center;
-  text-transform: capitalize;
-  top: 5px;
-  z-index: 1;
-}
-.single__product span.discount_price {
-  left: auto;
-  right: 5px;
-}
+    .single__product span {
+        /*background: #94c341 none repeat scroll 0 0;*/
+        background-image: url(../img/deal-tag.png);
+        /*border-radius: 3px;*/
+        color: #ffffff !important;
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 400;
+        height: 36px;
+        left: 5px;
+        line-height: 25px;
+        min-width: 40px;
+        padding: 1px;
+        position: absolute;
+        text-align: center;
+        text-transform: capitalize;
+        top: 5px;
+        z-index: 1;
+    }
+
+        .single__product span.new_badge {
+            left: auto;
+            right: 5px;
+        }
 .features_product_active .col-lg-2 {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 100%;
@@ -4198,16 +4209,17 @@ p.form-messege.success {
 }
 /*Header css here*/
 .sticky-header.sticky {
-  -webkit-animation: 400ms ease-in-out 0s normal none 1 running fadeInDown;
-  animation: 400ms ease-in-out 0s normal none 1 running fadeInDown;
-  background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
-  -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
-  left: 0;
-  padding: 0 24px;
-  position: fixed;
-  width: 100%;
-  z-index: 999;
+    -webkit-animation: 400ms ease-in-out 0s normal none 1 running fadeInDown;
+    animation: 400ms ease-in-out 0s normal none 1 running fadeInDown;
+    background: rgba(255, 255, 255, 0.8) none repeat scroll 0 0;
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
+    left: 0;
+    padding: 0 24px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    margin-top: -30px;
 }
 /* 18. account page css here */
 section.main-content-area.my-account,section.main-content-area.error_pages {
@@ -4371,6 +4383,11 @@ a.active {
     color: #28a745 !important;
     border-bottom: 3px solid #28a745 !important;
 }
+
+li.active a {
+    color: #28a745 !important;
+    border-bottom: 3px solid #28a745 !important;
+}
 label.error{
     color: red;
 }
@@ -4412,3 +4429,9 @@ span.buttonText {
     border-color: rgba(0,0,0,0.2);
 }
 
+.btnSee {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}

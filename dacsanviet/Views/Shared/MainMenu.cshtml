@@ -1,4 +1,8 @@
-﻿
+﻿@{ 
+    var menu = (List < dacsanviet.Models.Entity.Menu >)ViewBag.GetMenu;
+    var parentMenu = (List<dacsanviet.Models.Entity.Menu>)ViewBag.GetParentMenu;
+    bool check = false;
+}
 
 <!--Menu ngang-->
 <div class="main_menu_inner">
@@ -6,40 +10,44 @@
     <div class="menu">
         <nav>
             <ul>
-                <li class="active"><a href="index.html">Trang chủ</a></li>
-                <li><a href="about.html">Giới thiệu</a></li>
-                <li><a href="shop.html">Cửa hàng</a></li>
-                <li class="mega_parent">
-                    <a href="#">Danh mục<i class="fa fa-angle-down"></i></a>
-                    <ul class="mega_menu">
-                        <li class="mega_item">
-                            @*<a class="mega_title" href="#">Trái cây</a>*@
-                            <ul>
-                                <li><a href="shop.html">Hoa, trái cây</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega_item">
-                            @*<a  href="#">Các loại hạt</a>*@
-                            <ul>
-                                <li><a href="wishlist.html">Các loại hạt</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega_item">
-                            @*<a class="mega_title" href="#">Hải sản</a>*@
-                            <ul>
-                                <li><a href="about.html">Hải sản</a></li>
-                            </ul>
-                        </li>
-                        <li class="mega_item">
-                            @*<a class="mega_title" href="#">Hải sản</a>*@
-                            <ul>
-                                <li><a href="about.html">Sản phẩm từ gỗ</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="blog.html">Bài viết</a></li>
-                @*<li><a href="#">Trợ giúp</a></li>*@
+                @foreach (var item in menu)
+                {
+                    foreach (var jtem in parentMenu)
+                    {
+                        if (item.menu_ID != jtem.menuParent_ID)
+                        {
+                            check = false;
+                            continue;
+                        }
+                        else
+                        {
+                            <li class="mega_parent">
+                                <a href="">@item.text<i class="fa fa-angle-down"></i></a>
+                                <ul class="mega_menu" style="max-width: 50%;">
+
+                                    @foreach (var j in parentMenu)
+                                    {
+                                        if (item.menu_ID == j.menuParent_ID)
+                                        {
+                                            <li class="mega_item">
+                                                <ul>
+                                                    <li><a href="@j.link" target="">@j.text</a></li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                            check = true;//có parent menu
+                            break;
+                        }
+                    }
+                    if (check == false)
+                    {
+                        <li><a href="@item.link" target="@item.target">@item.text</a></li>
+                    }
+
+                }
             </ul>
         </nav>
     </div>

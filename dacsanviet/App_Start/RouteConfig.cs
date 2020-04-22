@@ -13,26 +13,11 @@ namespace dacsanviet
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //Đăng xuất
+            //Xác nhận thay đổi mật khẩu
             routes.MapRoute(
                 name: "confirm change pass",
                 url: "confirm-change-pass",
                 defaults: new { controller = "Login", action = "Confirm_ForgetPass", id = UrlParameter.Optional }
-            );
-
-
-            //Đăng xuất
-            routes.MapRoute(
-                name: "forget password",
-                url: "quen-mat-khau",
-                defaults: new { controller = "Login", action = "ForgetPass", id = UrlParameter.Optional }
-            );
-
-            //Đăng xuất
-            routes.MapRoute(
-                name: "error",
-                url: "error",
-                defaults: new { controller = "Home", action = "ErrorPage", id = UrlParameter.Optional }
             );
 
             //Đăng xuất

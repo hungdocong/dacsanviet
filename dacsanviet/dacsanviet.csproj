@@ -137,12 +137,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Area\AreaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business\MenuBusiness.cs" />
+    <Compile Include="Models\Business\ProductBusiness.cs" />
     <Compile Include="Models\Business\UserBusiness.cs" />
     <Compile Include="Models\DTO\MD5.cs" />
     <Compile Include="Models\Entity\About.cs">
@@ -243,6 +244,7 @@
     <Content Include="Asset\Client\css\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Asset\Client\css\ionicons.min.css" />
     <Content Include="Asset\Client\css\jquery-ui.css" />
+    <Content Include="Asset\Client\css\lib_UI_jquery_css_custom-theme_jquery-ui-1.9.2.custom.css" />
     <Content Include="Asset\Client\css\magnific-popup.css" />
     <Content Include="Asset\Client\css\material-design-iconic-font.min.css" />
     <Content Include="Asset\Client\css\meanmenu.min.css" />
@@ -318,6 +320,7 @@
     <Content Include="Asset\Client\img\cart\nav12.jpg" />
     <Content Include="Asset\Client\img\cart\nav13.jpg" />
     <Content Include="Asset\Client\img\cart\nav2.jpg" />
+    <Content Include="Asset\Client\img\deal-tag.png" />
     <Content Include="Asset\Client\img\error.jpg" />
     <Content Include="Asset\Client\img\favicon.png" />
     <Content Include="Asset\Client\img\google.png" />
@@ -343,7 +346,29 @@
     <Content Include="Asset\Client\img\product\7.jpg" />
     <Content Include="Asset\Client\img\product\8.jpg" />
     <Content Include="Asset\Client\img\product\9.jpg" />
+    <Content Include="Asset\Client\img\product\bau-xanh-huu-co.jpg" />
+    <Content Include="Asset\Client\img\product\bi-ho-lo-huu-co.jpg" />
+    <Content Include="Asset\Client\img\product\bi-ngoi-huu-co.jpg" />
     <Content Include="Asset\Client\img\product\big-1.jpg" />
+    <Content Include="Asset\Client\img\product\ca-rot-huu-co.jpg" />
+    <Content Include="Asset\Client\img\product\cai-kale-huu-co.jpg" />
+    <Content Include="Asset\Client\img\product\chom-chom.jpg" />
+    <Content Include="Asset\Client\img\product\den-may-tre-dan.jpg" />
+    <Content Include="Asset\Client\img\product\gio-may-tre-dan.jpg" />
+    <Content Include="Asset\Client\img\product\gio-may-xien-chu-nhat.jpg" />
+    <Content Include="Asset\Client\img\product\hanh-nhan.jpg" />
+    <Content Include="Asset\Client\img\product\hat-chia.png" />
+    <Content Include="Asset\Client\img\product\hat-dieu.jpg" />
+    <Content Include="Asset\Client\img\product\hat-sen.jpg" />
+    <Content Include="Asset\Client\img\product\hat_de.jpg" />
+    <Content Include="Asset\Client\img\product\khay-coc-vn.jpg" />
+    <Content Include="Asset\Client\img\product\ngheu.jpg" />
+    <Content Include="Asset\Client\img\product\nhan-long-hung-yen.jpg" />
+    <Content Include="Asset\Client\img\product\thanh-long-ruot-do.jpg" />
+    <Content Include="Asset\Client\img\product\thanh-long.jpg" />
+    <Content Include="Asset\Client\img\product\tom-hum.jpg" />
+    <Content Include="Asset\Client\img\product\tom-su.jpg" />
+    <Content Include="Asset\Client\img\product\vai-thieu.png" />
     <Content Include="Asset\Client\img\ship\1.png" />
     <Content Include="Asset\Client\img\ship\2.png" />
     <Content Include="Asset\Client\img\ship\3.png" />
@@ -355,13 +380,16 @@
     <Content Include="Asset\Client\img\success.jpg" />
     <Content Include="Asset\Client\js\ajax-mail.js" />
     <Content Include="Asset\Client\js\bootstrap.min.js" />
+    <Content Include="Asset\Client\js\home.js" />
     <Content Include="Asset\Client\js\imagesloaded.pkgd.min.js" />
     <Content Include="Asset\Client\js\isotope.pkgd.min.js" />
     <Content Include="Asset\Client\js\jquery-ui.js" />
     <Content Include="Asset\Client\js\jquery.countdown.min.js" />
     <Content Include="Asset\Client\js\jquery.counterup.min.js" />
     <Content Include="Asset\Client\js\jquery.meanmenu.min.js" />
+    <Content Include="Asset\Client\js\jquery.min.js" />
     <Content Include="Asset\Client\js\jquery.validate.min.js" />
+    <Content Include="Asset\Client\js\lib_UI_jquery_js_jquery-ui-1.9.2.custom.min.js" />
     <Content Include="Asset\Client\js\login_register.js" />
     <Content Include="Asset\Client\js\main.js" />
     <Content Include="Asset\Client\js\map.js" />
@@ -414,7 +442,6 @@
     <Content Include="Models\Entity\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Area\Views\web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -442,15 +469,12 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Register_Confirm.cshtml" />
     <Content Include="Views\Login\Register_Success.cshtml" />
-    <Content Include="Views\Home\ErrorPage.cshtml" />
+    <Content Include="Views\Home\Page404.cshtml" />
     <Content Include="Views\Login\Confirm_ForgetPass.cshtml" />
     <Content Include="Views\Login\SendMailChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Area\Controllers\" />
-    <Folder Include="Areas\Area\Models\" />
-    <Folder Include="Areas\Area\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
