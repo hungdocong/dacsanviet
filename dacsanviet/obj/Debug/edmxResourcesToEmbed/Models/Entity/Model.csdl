@@ -29,6 +29,7 @@
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="fax" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Stores" Relationship="Self.FK_Store_Company" FromRole="Company" ToRole="Store" />
+    <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="FeedBack">
     <Key>
@@ -198,9 +199,6 @@
       <PropertyRef Name="shop_ID" />
     </Key>
     <Property Name="shop_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="product_ID" Type="Int64" />
     <Property Name="company_ID" Type="Int64" />
     <NavigationProperty Name="Company" Relationship="Self.FK_Store_Company" FromRole="Store" ToRole="Company" />

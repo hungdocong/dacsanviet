@@ -245,6 +245,7 @@
 .mini_cart_inner {
   padding: 23px 0;
   position: relative;
+  float:left;
 }
 .mini_cart_box {
 	background: #ffffff none repeat scroll 0 0;
@@ -452,8 +453,10 @@
     height: 30px;
 }
 .header_account {
-  padding: 25px 0;
-  position: relative;
+    padding: 25px 0;
+    position: relative;
+    float: right;
+    margin-left: 20px;
 }
 .language-selector-wrapper {
   display: -webkit-box;
@@ -796,7 +799,11 @@ p.origin_price {
   padding-bottom: 75px;
   position: relative;
 }
-.single_product__inner{
+
+.row > .single__product{
+    width: 20%;
+}
+.single_product__inner {
     border: 2px solid rgba(0, 0, 0, 0);
     border-bottom: none;
     border-radius: 5px 5px 0 0;
@@ -3348,9 +3355,15 @@ span.control_labels {
 	justify-content: space-between;
 	margin-bottom: 20px;
 }
-.cart-subtotal span {
-	font-weight: 700;
-}
+ .cart-subtotal strong {
+    font-weight: 400;
+ }
+
+    .order-total strong {
+        color: #fe3834;
+        font-size: 22px;
+        font-weight: 400;
+    }
 .shipping {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -3386,19 +3399,21 @@ span.control_labels {
 .order-total {
 	margin-bottom: 50px;
 }
-.wc-proceed-to-checkout a {
-  background: #78a206 none repeat scroll 0 0;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 30px;
-  color: #ffffff;
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 13px 35px;
-  text-transform: uppercase;
+.wc-proceed-to-checkout input {
+    background: #78a206 none repeat scroll 0 0;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 30px;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 13px 35px;
+    text-transform: uppercase;
+    margin: 40px 40px;
+    width: 18%;
 }
-.wc-proceed-to-checkout a:hover {
-  background: #333333 none repeat scroll 0 0;
+.wc-proceed-to-checkout input:hover {
+    background: #333333 none repeat scroll 0 0;
 }
 .coupon-form-two.mb-30 > form {
   display: inline-block;
@@ -4434,4 +4449,126 @@ span.buttonText {
     width: 100%;
     border-radius: 5px;
     font-size: 16px;
+}
+
+
+
+/* cart */
+.cart_name {
+    float: left;
+    padding-right: 7px;
+    text-transform: uppercase;
+}
+
+.cart_container {
+    padding: 12px 75px;
+}
+
+.product-name {
+    width: 330px;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 0;
+    color: #000;
+}
+
+.product-thumbnail {
+    width: 15%;
+}
+
+.price2 {
+    font-size: 12px;
+    text-decoration: line-through;
+    color: #a2a2a2;
+}
+
+.del-item {
+    border: 0;
+    color: #007ff0 !important;
+    font-size: 13px;
+    margin-right: 30px;
+    position: static;
+    padding: 0;
+}
+
+td p a:hover {
+    text-decoration: underline;
+}
+
+.sale {
+    background: 0 0 !important;
+    color: #242424 !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    position: relative !important;
+    display: inline-block !important;
+    margin-left: 17px !important;
+    border-left: 1px solid;
+    padding-left: 11px;
+}
+
+.pri {
+    margin-top: -45px;
+}
+
+.product-price .bootstrap-touchspin-down {
+    background: #f8f8f8 !important;
+    border-radius: 3px 0 0 3px;
+    border: 1px solid #c8c8c8;
+    ;
+    margin-bottom: 1px;
+    margin-right: -5px;
+    margin-bottom: 3px;
+}
+
+.product-price .bootstrap-touchspin-up {
+    background: #f8f8f8 !important;
+    border-radius: 0 3px 3px 0;
+    border: 1px solid #c8c8c8;
+    ;
+    margin-left: -5px;
+    margin-bottom: 3px;
+}
+
+.input-count {
+    width: 40px;
+    height: 30px;
+    margin-bottom: 65px;
+    border: 1px solid #c8c8c8;
+    padding-left: 5px;
+    text-align: center;
+    padding-right: 5px;
+}
+
+.total-container {
+    margin-top: 13px;
+}
+
+.input-code {
+    background-color: #0000;
+    width: 68%;
+}
+
+#btn-code {
+    width: 30%;
+    height: 45px;
+    margin-bottom: 4px;
+    padding: 1px;
+}
+
+.code-container {
+    background-color: #f5f5f5;
+    width: 270px;
+    margin-left: 14px;
+}
+
+.order-total .amount {
+    float: right;
+}
+
+.order-total .span {
+    margin-top: 6px;
 }

@@ -29,6 +29,7 @@
           </Key>
           <Property Name="company_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="250" />
+          <Property Name="image" Type="nvarchar" MaxLength="250" />
           <Property Name="address" Type="nvarchar" MaxLength="500" />
           <Property Name="phone" Type="nchar" MaxLength="50" />
           <Property Name="fax" Type="nchar" MaxLength="50" />
@@ -185,9 +186,6 @@
             <PropertyRef Name="shop_ID" />
           </Key>
           <Property Name="shop_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="address" Type="nvarchar" MaxLength="250" />
-          <Property Name="phone" Type="varchar" MaxLength="50" />
-          <Property Name="fax" Type="varchar" MaxLength="50" />
           <Property Name="product_ID" Type="bigint" />
           <Property Name="company_ID" Type="bigint" />
         </EntityType>
@@ -502,6 +500,7 @@
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="fax" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Stores" Relationship="Self.FK_Store_Company" FromRole="Company" ToRole="Store" />
+          <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FeedBack">
           <Key>
@@ -671,9 +670,6 @@
             <PropertyRef Name="shop_ID" />
           </Key>
           <Property Name="shop_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="product_ID" Type="Int64" />
           <Property Name="company_ID" Type="Int64" />
           <NavigationProperty Name="Company" Relationship="Self.FK_Store_Company" FromRole="Store" ToRole="Company" />
@@ -997,6 +993,7 @@
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="dacsanvietModel.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="company_ID" ColumnName="company_ID" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -1166,9 +1163,6 @@
             <EntityTypeMapping TypeName="dacsanvietModel.Store">
               <MappingFragment StoreEntitySet="Store">
                 <ScalarProperty Name="shop_ID" ColumnName="shop_ID" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
                 <ScalarProperty Name="product_ID" ColumnName="product_ID" />
                 <ScalarProperty Name="company_ID" ColumnName="company_ID" />
               </MappingFragment>

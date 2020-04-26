@@ -21,9 +21,13 @@ namespace dacsanviet.Controllers
             //Product
             var proModel = new ProductBusiness();
             ViewBag.featureProduct = proModel.featureProduct();//sản phẩm đặc trưng
-            ViewBag.getCategory = proModel.getCategories();//lấy loại sản phẩm
+            ViewBag.getProductByCompany = proModel.getProductByCompany();//lấy sp theo company
             ViewBag.newProduct = proModel.newProduct();//sp mới
             ViewBag.topSellProduct = proModel.topSellProduct(); //sp bán chạy
+
+            //Product category
+            ViewBag.getCategory = proModel.getCategories();//lấy loại sản phẩm, lấy 3 cái đầu
+            ViewBag.getLastCate = proModel.getLastCategory();//lấy loại sản phẩm, lấy 3 cái cuối
 
             return View();
         }

@@ -6,13 +6,18 @@
     var getCategory = (List<dacsanviet.Models.Entity.ProductCategory>)ViewBag.getCategory;
     var newProduct = (List<dacsanviet.Models.Entity.Product>)ViewBag.newProduct;
     var topSellProduct = (List<dacsanviet.Models.Entity.Product>)ViewBag.topSellProduct;
-    long min = 10000;
+    var getLastCate = (List<dacsanviet.Models.Entity.ProductCategory>)ViewBag.getLastCate;
+    var getProductByCompany = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.getProductByCompany;
+    long min = 10000, max = 0;
+    string image = "";
+    int dem = 0;
 }
 
 @section jsSection{
     <script src="~/Asset/Client/js/home.js"></script>
     <script type="text/javascript">
         btnTabs(@min);
+        btnTabs_2(@max);
     </script>
 }
 
@@ -100,13 +105,13 @@
 
                 @foreach (var item in topSellProduct)
                 {
-                    int discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">
                                 @*<span class="new_badge">new</span>*@
                                 @if (item.promotionPrice != null)
                                 {
+                                    int discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
                                     <span class="discount_price">-@discount%</span>
                                 }
                                 <div class="product_img">
@@ -133,7 +138,7 @@
                                     </div>
                                     <div class="product__hover">
                                         <ul>
-                                            <li><a href="#" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
+                                            <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
                                             @*<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>*@
                                             <li><a href="" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
                                         </ul>
@@ -149,8 +154,164 @@
     </div>
 </div>
 <!--Features product end-->
+<!--Banner area start-->
+<div class="banner_area home1_banner2 pb-90">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="single_banner">
+                    <a href="#">
+                        <img src="Asset/Client/img/banner/big-1.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="single_banner">
+                    <a href="#">
+                        <img src="Asset/Client/img/banner/big-2.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Banner area end-->
+<!--shop product area start-->
+<div class="shop_product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="shop_product_head d-flex justify-content-between mb-30">
+                    <div class="section_title space_2 text-left">
+                        <h3>Thương hiệu nổi tiếng</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="shop_larg_product">
+                    <div class="single__product_2">
+                        <div class="product_img">
+
+                            @foreach (var item in getProductByCompany)
+                            {
+                                image = item.image;
+                                break;
+                            }
+                            <a href="#">
+                                <img src="@image" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6">
+                <div class="row">
+                    @foreach (var item in getProductByCompany)
+                    {
+                        if (dem == 10)
+                        {
+                            break;
+                        }
+                        <div class="single__product">
+                            <div class="single_product__inner">
+                                @if (item.promotionPrice != null)
+                                {
+                                    var discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
+                                    <span class="discount_price">-@discount%</span>
+                                }
+                                <div class="product_img">
+                                    <a href="#">
+                                        <img src="@item.productImage" alt="">
+                                    </a>
+                                </div>
+                                <div class="product__content text-center">
+                                    <div class="produc_desc_info">
+                                        <div class="product_title">
+                                            <h4>
+                                                <a href="product-details.html">@item.productName</a>
+                                            </h4>
+                                        </div>
+                                        <div class="product_price">
+                                            @if (item.promotionPrice != null)
+                                            {
+                                                <p>@item.promotionPrice.Value.ToString("N0") ₫</p>
+                                                <p class="origin_price">@item.price.Value.ToString("N0") ₫</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@item.price.Value.ToString("N0") ₫</p>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="product__hover">
+                                        <ul>
+                                            <li><a href="#" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
+                                            <li><a href="" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        dem++;
+                    }
+                    @if (dem == 10)
+                    {
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="shop_product_head d-flex justify-content-between mb-30">
+                                <a href="#" class="btnSee btn btn-danger btn-lg" role="button">Xem tất cả</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--shop product area end-->
+<!--Recommended product area start-->
+<div class="recommended_product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="shop_product_head d-flex justify-content-between mb-30">
+                    <div class="section_title space_2 text-left">
+                        <h3>Dành riêng cho bạn</h3>
+                    </div>
+                    <div class="home_shop_product text-right">
+                        <ul class="product-tab-list nav d-flex flex-wrap justify-content-end" role="tablist">
+                            @foreach (var item in getCategory)
+                            {
+                                if (min > item.productCategory_ID)
+                                {
+                                    min = item.productCategory_ID;
+                                    <li class="tabs active"><a href="#Category_@item.productCategory_ID" onclick="btnTabs(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
+                                }
+                                else
+                                {
+                                    <li class="tabs"><a href="#Category_@item.productCategory_ID" onclick="btnTabs(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-content">
+
+        </div>
+    </div>
+</div>
+<!--Recommended product area end-->
 <!--Shipping area start-->
-<div class="shipping_area">
+<div class="shipping_area pb-90">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -197,67 +358,6 @@
     </div>
 </div>
 <!--Shipping area end-->
-<!--shop product area start-->
-<!--shop product area end-->
-<!--Banner area start-->
-<div class="banner_area home1_banner2 pb-90">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="single_banner">
-                    <a href="#">
-                        <img src="Asset/Client/img/banner/big-1.jpg" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="single_banner">
-                    <a href="#">
-                        <img src="Asset/Client/img/banner/big-2.jpg" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Banner area end-->
-<!--Recommended product area start-->
-<div class="recommended_product">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="shop_product_head d-flex justify-content-between mb-30">
-                    <div class="section_title space_2 text-left">
-                        <h3>Dành riêng cho bạn</h3>
-                    </div>
-                    <div class="home_shop_product text-right">
-                        <ul class="product-tab-list nav d-flex flex-wrap justify-content-end" role="tablist">
-                            @foreach (var item in getCategory)
-                            {
-                                if (min > item.productCategory_ID)
-                                {
-                                    min = item.productCategory_ID;
-                                    <li class="tabs active"><a href="#Category_@item.productCategory_ID" onclick="btnTabs(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
-                                }
-                                else
-                                {
-                                    <li class="tabs"><a href="#Category_@item.productCategory_ID" onclick="btnTabs(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
-                                }
-                            }
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="tab-content">
-
-        </div>
-    </div>
-</div>
-<!--Recommended product area end-->
 <!--New product area-->
 <div class="new_product">
     <div class="container-fluid">
@@ -273,13 +373,13 @@
 
                 @foreach (var item in newProduct)
                 {
-                    var discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">
                                 @*<span class="new_badge">new</span>*@
                                 @if (item.promotionPrice != null)
                                 {
+                                    var discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
                                     <span class="discount_price">-@discount%</span>
                                 }
                                 <div class="product_img">
@@ -323,6 +423,43 @@
     </div>
 </div>
 <!--new product end-->
+<!--shop product area start-->
+<div class="recommended_product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="shop_product_head d-flex justify-content-between mb-30">
+                    <div class="section_title space_2 text-left">
+                        <h3>Có thể bạn quan tâm</h3>
+                    </div>
+                    <div class="home_shop_product text-right">
+                        <ul class="product-tab-list nav d-flex flex-wrap justify-content-end" role="tablist">
+                            @foreach (var item in getLastCate)
+                            {
+                                if (max < item.productCategory_ID)
+                                {
+                                    max = item.productCategory_ID;
+                                    <li class="tabs_2 active"><a href="#_@item.productCategory_ID" onclick="btnTabs_2(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
+                                }
+                                else
+                                {
+                                    <li class="tabs_2"><a href="#_@item.productCategory_ID" onclick="btnTabs_2(@item.productCategory_ID)" data-toggle="tab" role="tab" aria-controls="Category_@item.productCategory_ID">@item.name</a></li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tab-content tab2_content">
+
+        </div>
+    </div>
+</div>
+<!--shop product area end-->
 <!--Banner area start-->
 <div class="banner_area banner_area-2 pb-90">
     <div class="container-fluid">

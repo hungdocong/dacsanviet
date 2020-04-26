@@ -66,70 +66,27 @@
                                             <a href="#">
                                                 <span class="cart_icon_inner">
                                                     <i class="ion-android-cart"></i>
-                                                    <span class="cart_count">2</span>
+                                                    <span class="cart_count">0</span>
                                                 </span>
                                                 <!-- <span class="item_total">$65.00</span> -->
                                             </a>
                                         </div>
                                         <!--Mini Cart Box-->
                                         <div class="mini_cart_box cart_box_one">
-                                            <div class="mini_cart_item">
-                                                <div class="mini_cart_img">
-                                                    <a href="#">
-                                                        <img src="~/Asset/Client/img/cart/1.jpg" alt="">
-                                                        <span class="cart_count">1</span>
-                                                    </a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <h5><a href="product-details.html">Mushroom Burger</a></h5>
-                                                    <span class="cart_price">$75.99</span>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="mini_cart_item">
-                                                <div class="mini_cart_img">
-                                                    <a href="#">
-                                                        <img src="~/Asset/Client/img/cart/2.jpg" alt="">
-                                                        <span class="cart_count">1</span>
-                                                    </a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <h5><a href="#">Country Burger</a></h5>
-                                                    <span class="cart_price">$48.99</span>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="zmdi zmdi-delete"></i></a>
-                                                </div>
-                                            </div>
-
-                                            <div class="price_content">
-                                                <div class="cart_subtotals">
-                                                    <div class="price_inline">
-                                                        <span class="label">Subtotal </span>
-                                                        <span class="value">$143.49 </span>
-                                                    </div>
-                                                    <div class="price_inline">
-                                                        <span class="label">Shipping </span>
-                                                        <span class="value">$7.00</span>
-                                                    </div>
-                                                    <div class="price_inline">
-                                                        <span class="label">Taxes </span>
-                                                        <span class="value">$0.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="cart-total-price">
-                                                    <span class="label">Total </span>
-                                                    <span class="value">$85.99</span>
-                                                </div>
-                                            </div>
-                                            <div class="min_cart_checkout">
-                                                <a href="checkout.html">Checkout</a>
-                                            </div>
+                                             <div class="cart-box">
+                                             </div>
+                                             <div class="checkout-cart">
+                                                 <div class="price_content">
+                                                     <div class="cart-total-price">
+                                                         <span class="label">Tổng tiền </span>
+                                                         <span class="value" id="cartTotal">0</span>
+                                                     </div>
+                                                 </div>
+                                                 <div class="min_cart_checkout">
+                                                     <a href="">Tiến hành đặt hàng</a>
+                                                 </div>
+                                             </div>
                                         </div>
-                                        <!--Mini Cart Box End -->
-                                    </div>
                                 </div>
                                 <div class="header_account">
                                     @if (user != null)
@@ -593,7 +550,7 @@
     <script src="~/Asset/Client/notify/notify.js"></script>
     <script src="~/Asset/Client/notify/PNotify.js"></script>
     <script src="~/Asset/Client/js/login_register.js"></script>
-
+    <script src="~/Asset/Client/js/Cart.js"></script>
     @RenderSection("jsSection", required: false)
 
     <script>

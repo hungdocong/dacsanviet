@@ -24,6 +24,7 @@
     </Key>
     <Property Name="company_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="image" Type="nvarchar" MaxLength="250" />
     <Property Name="address" Type="nvarchar" MaxLength="500" />
     <Property Name="phone" Type="nchar" MaxLength="50" />
     <Property Name="fax" Type="nchar" MaxLength="50" />
@@ -180,9 +181,6 @@
       <PropertyRef Name="shop_ID" />
     </Key>
     <Property Name="shop_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="address" Type="nvarchar" MaxLength="250" />
-    <Property Name="phone" Type="varchar" MaxLength="50" />
-    <Property Name="fax" Type="varchar" MaxLength="50" />
     <Property Name="product_ID" Type="bigint" />
     <Property Name="company_ID" Type="bigint" />
   </EntityType>

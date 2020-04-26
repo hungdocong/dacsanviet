@@ -23,6 +23,7 @@
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="dacsanvietModel.Company">
         <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="company_ID" ColumnName="company_ID" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="address" ColumnName="address" />
@@ -192,9 +193,6 @@
       <EntityTypeMapping TypeName="dacsanvietModel.Store">
         <MappingFragment StoreEntitySet="Store">
           <ScalarProperty Name="shop_ID" ColumnName="shop_ID" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="fax" ColumnName="fax" />
           <ScalarProperty Name="product_ID" ColumnName="product_ID" />
           <ScalarProperty Name="company_ID" ColumnName="company_ID" />
         </MappingFragment>

@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--breadcrumb area start-->
+<div class="breadcrumb_container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <nav>
+                    <ul>
+                        <li><a href="/">Trang chủ ></a></li>
+                        <li>Giỏ hàng</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumb area end-->
+
+<div class="cart_container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="cart_name">Giỏ hàng</h5>
+                <span>(5 sản phẩm)</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cart_main_area">
+    <div class="container">
+        <div class="row">
+            <form action="#">
+                <div class="col-9">
+                    <div class="table-content table-responsive">
+                        <table style="float: left;">
+                            <tbody>
+                                <tr>
+                                    <td class="product-thumbnail"><img src="assets/img/product/1.jpg" alt=""></td>
+                                    <td class="product-name">
+                                        <a href="#">Chôm chôm miền Tây</a>
+                                        <p>
+                                            Cung cấp bởi: <span class="amount">
+                                                <a href="#" class="del-item">
+                                                    nông sản
+                                                    Cần Thơ
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="del-item"> Xóa</a>
+                                        </p>
+                                    </td>
+                                    <td class="product-price" style="width: 165px;">
+                                        <h5 class="pri price">400.000 đ</h5>
+                                        <h5 class="price2">
+                                            339.000 đ
+                                            <span class="sale">-18%</span>
+                                        </h5>
+                                    </td>
+                                    <td class="product-price">
+                                        <button type="button" class="btn btn-default bootstrap-touchspin-down">-</button>
+                                        <input type="text" value="1" class="input-count">
+                                        <button type="button" class="btn btn-default bootstrap-touchspin-up">+</button>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="product-thumbnail"><img src="assets/img/product/1.jpg" alt=""></td>
+                                    <td class="product-name">
+                                        <a href="#">Chôm chôm miền Tây</a>
+                                        <p>
+                                            Cung cấp bởi: <span class="amount">
+                                                <a href="#" class="del-item">
+                                                    nông sản
+                                                    Cần Thơ
+                                                </a>
+                                            </span>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="del-item"> Xóa</a>
+                                        </p>
+                                    </td>
+                                    <td class="product-price" style="width: 165px;">
+                                        <h5 class="pri price">400.000 đ</h5>
+                                        <h5 class="price2">
+                                            339.000 đ
+                                            <span class="sale">-18%</span>
+                                        </h5>
+                                    </td>
+                                    <td class="product-price">
+                                        <button type="button" class="btn btn-default bootstrap-touchspin-down">-</button>
+                                        <input type="text" value="1" class="input-count">
+                                        <button type="button" class="btn btn-default bootstrap-touchspin-up">+</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="row table-responsive_bottom">
+                        <div class="col-lg-7 col-sm-7 col-md-7">
+                            <div class="buttons-carts">
+                                <a href="/">Tiếp tục mua hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3" style="height: 155px;">
+                    <div class="total-container" style="background-color: #f5f5f5; border-radius: 5px;">
+                        <div class="cart_totals  text-right">
+                            <div class="cart-subtotal">
+                                <span>Tạm tính: </span>
+                                <strong>400.000 đ</strong>
+                            </div>
+                            <div class="order-total">
+                                <span>Thành tiền:</span>
+                                <div class="amount">
+                                    <strong>1.400.000 đ </strong>
+                                    <h6 class="text-right">
+                                        <small>(Đã bao gồm VAT nếu có)</small>
+                                    </h6>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="wc-proceed-to-checkout">
+                    <input type="submit" value="Tiến hành đặt hàng" />
+                </div>
+                <div class="col-3 code-container">
+                    <p>Mã giảm giá / quà tặng</p>
+                    <input placeholder="Nhập ở đây..." type="text" class="input-code">
+                    <button class="btn btn-warning" id="btn-code">Đồng ý</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+

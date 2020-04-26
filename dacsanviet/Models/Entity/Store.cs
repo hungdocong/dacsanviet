@@ -15,9 +15,6 @@ namespace dacsanviet.Models.Entity
     public partial class Store
     {
         public long shop_ID { get; set; }
-        public string address { get; set; }
-        public string phone { get; set; }
-        public string fax { get; set; }
         public Nullable<long> product_ID { get; set; }
         public Nullable<long> company_ID { get; set; }
     

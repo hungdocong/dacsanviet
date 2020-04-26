@@ -137,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,7 +146,9 @@
     <Compile Include="Models\Business\MenuBusiness.cs" />
     <Compile Include="Models\Business\ProductBusiness.cs" />
     <Compile Include="Models\Business\UserBusiness.cs" />
+    <Compile Include="Models\DTO\CartDTO.cs" />
     <Compile Include="Models\DTO\MD5.cs" />
+    <Compile Include="Models\DTO\ProductDTO.cs" />
     <Compile Include="Models\Entity\About.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -324,6 +327,7 @@
     <Content Include="Asset\Client\img\error.jpg" />
     <Content Include="Asset\Client\img\favicon.png" />
     <Content Include="Asset\Client\img\google.png" />
+    <Content Include="Asset\Client\img\company\logo-store.png" />
     <Content Include="Asset\Client\img\logo\1.png" />
     <Content Include="Asset\Client\img\logo\dacsanviet.jpg" />
     <Content Include="Asset\Client\img\logo\icon.png" />
@@ -380,6 +384,7 @@
     <Content Include="Asset\Client\img\success.jpg" />
     <Content Include="Asset\Client\js\ajax-mail.js" />
     <Content Include="Asset\Client\js\bootstrap.min.js" />
+    <Content Include="Asset\Client\js\Cart.js" />
     <Content Include="Asset\Client\js\home.js" />
     <Content Include="Asset\Client\js\imagesloaded.pkgd.min.js" />
     <Content Include="Asset\Client\js\isotope.pkgd.min.js" />
@@ -472,6 +477,7 @@
     <Content Include="Views\Home\Page404.cshtml" />
     <Content Include="Views\Login\Confirm_ForgetPass.cshtml" />
     <Content Include="Views\Login\SendMailChangePass.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
