@@ -54,13 +54,10 @@ namespace dacsanviet.Controllers
 
                 Session[CartSession] = list;
             }
-            return Json( new {
-                                product_ID = product.product_ID,
-                                productImage = product.productImage,
-                                productName = product.productName,
-                                promotionPrice = product.promotionPrice,
-                                quantity = quantity
-                            }, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                status = true
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

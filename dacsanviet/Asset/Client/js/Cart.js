@@ -1,4 +1,11 @@
-﻿var cart = {
+﻿
+$(document).ready(function () {
+    $('.btn-close').click(function () {
+        $('.mini_cart_box').removeClass('openCart');
+    });
+});
+
+var cart = {
     init: function () {
         cart.regEvents();
     },
@@ -15,48 +22,21 @@
                 },
                 dataType: 'Json',
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    var total = 0;
-                    var rows = '<div class="mini_cart_item id_' + data.product_ID + '">' +
-                                    '<div class="mini_cart_img">' +
-                                        '<a href="#">' +
-                                            '<img src="' + data.productImage + '" alt="">' +
-                                            '<span class="cart_count" id="quantity_' + data.product_ID + '">' + data.quantity + '</span>' +
-                                        '</a>' +
-                                    '</div>' +
-                                    '<div class="cart_info">' +
-                                        '<h5><a href="#">' + data.productName + '</a></h5>' +
-                                        '<span class="cart_price">' + formatNumber(data.promotionPrice * data.quantity, '.', '.') + '&nbsp ₫</span>' +
-                                    '</div>' +
-                                    '<div class="cart_remove">' +
-                                        '<a href="#"><i class="zmdi zmdi-delete"></i></a>' +
-                                    '</div>' +
-                                '</div>';
+                success: function (res) {
+                    if (res.status == true) {
+                        var count = $('.cart_count').text();
+                        var Soluong = parseInt(count) + 1;
+                        $('.mini_cart_box').css('display', 'block');
+                        $('.cart_count').text(Soluong);
+                        $('.mini_cart_box').addClass('openCart');
+                        $('.mini_cart_box').delay(4000).slideUp(500);
 
-                    total = data.promotionPrice * data.quantity;
-
-                    //Nếu tồn tại sp trong giỏ hàng
-                    if ($('.mini_cart_item').hasClass('id' + data.product_ID)) {
-                        var quantity = $('#quantity_' + data.product_ID).text();
-                        var so = parseInt(quantity) + 1;
-                        $('#quantity_' + data.product_ID).text(so);
-                    } else {
-                        $('.cart-box').append(rows);
+                        //PNotify.success({
+                        //    title: 'THÔNG BÁO!!',
+                        //    stack: { dir1: "up", dir2: "left", firstpos1: 25, firstpos2: 25 },
+                        //    text: 'Thêm giỏ hàng thành công.'
+                        //});
                     }
-
-                    var count = $('.cart_count').text();
-                    var Soluong = parseInt(count) + 1;
-                    $('.cart_count').text(Soluong);
-
-                    var price = $('#cartTotal').text().replace('.', '');
-                    var tong = parseInt(total) + parseInt(price);
-                    $('#cartTotal').text(formatNumber(tong, '.', '.') + " ₫");
-
-                    PNotify.success({
-                        title: 'THÔNG BÁO!!',
-                        stack: { dir1: "up", dir2: "left", firstpos1: 25, firstpos2: 25 },
-                        text: 'Thêm giỏ hàng thành công.'
-                    });
                     
                 }
             });

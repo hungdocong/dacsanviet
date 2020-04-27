@@ -248,28 +248,27 @@
   float:left;
 }
 .mini_cart_box {
-	background: #ffffff none repeat scroll 0 0;
-	-webkit-box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
-	box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
-	padding: 20px;
-	position: absolute;
-	right: 0px;
-	top: 100%;
-	width: 300px;
-	z-index: 99;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all 500ms linear 0s;
-	transition: all 500ms linear 0s;
-	-webkit-transform: scaleY(0);
-	transform: scaleY(0);
-	-webkit-transform-origin: 0 0 0;
-	transform-origin: 0 0 0;
+    background: #ffffff none repeat scroll 0 0;
+    -webkit-box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    width: 300px;
+    z-index: 99;
+    opacity: 1;
+    visibility: hidden;
+    -webkit-transition: all 500ms linear 0s;
+    transition: all 500ms linear 0s;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 0 0 0;
+    transform-origin: 0 0 0;
 }
-.mini_cart_inner:hover .mini_cart_box{
+.openCart{
 	opacity:1;
 	visibility:visible;
-	-webkit-transform:scaleY(1);
 	transform:scaleY(1);
 } 
 .mini__cart {
@@ -382,20 +381,20 @@
 .min_cart_checkout {
 	text-align: center;
 }
-.min_cart_checkout a {
-	text-transform: uppercase;
-	background: #2c2c2c;
-	font-weight: 400;
-	color: white;
-	border-radius: 5px;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	display: inline-block;
-	padding: 10px 20px;
-	font-size: 14px;
-	-webkit-transition:.3s;
-	transition:.3s;
-}
+    .min_cart_checkout a {
+        text-transform: uppercase;
+        background: rgb(255, 57, 69);
+        font-weight: 400;
+        color: white;
+        border-radius: 5px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 13px;
+        -webkit-transition: .3s;
+        transition: .3s;
+    }
 .min_cart_checkout a:hover {
 	background: #78a206;
 }
@@ -4571,4 +4570,15 @@ td p a:hover {
 
 .order-total .span {
     margin-top: 6px;
+}
+
+
+.dHEONM .btn-close {
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    color: rgb(155, 155, 155);
+    font-size: 11px;
+    padding: 4px;
 }
