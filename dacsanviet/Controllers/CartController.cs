@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace dacsanviet.Controllers
 {
@@ -58,6 +59,64 @@ namespace dacsanviet.Controllers
             {
                 status = true
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Sửa số lượng sp trong giỏ hàng
+        public JsonResult Edit(string cartModel)
+        {
+            var ed = new JavaScriptSerializer().Deserialize<List<CartDTO>>(cartModel);
+            var productSec = (List<CartDTO>)Session[CartSession];
+
+            //if (ed.Exists(x => x.quantity <= 0))
+            //{
+                //foreach(var item in orSec)
+                //{
+                //    var err = ed.SingleOrDefault(x => x.food.ID == item.food.ID);
+                //    orSec.RemoveAll(x => x.food.ID == err.food.ID);
+                //}
+            //    SetAlert("Số lượng món ăn không thể bằng 0 hoặc nhỏ hơn 0", "error");
+            //    return Json(new
+            //    {
+            //        status = true
+            //    });
+            //}
+            foreach (var item in productSec)
+            {
+                var product_id = ed.SingleOrDefault(x => x.Product.product_ID == item.Product.product_ID);
+                if (product_id != null)
+                {
+                    item.Quantity = product_id.Quantity;
+                }
+
+            }
+
+            Session[CartSession] = productSec;
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        //Xóa giỏ hàng
+        public JsonResult DeleteAll()
+        {
+            Session[CartSession] = null;
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        //Xóa sp trong giỏ hàng
+        public JsonResult Delete(long id)
+        {
+            var sec = (List<CartDTO>)Session[CartSession];
+            sec.RemoveAll(x => x.Product.product_ID == id);
+            Session[CartSession] = sec;
+            return Json(new
+            {
+                status = true
+            });
         }
     }
 }
