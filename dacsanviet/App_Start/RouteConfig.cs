@@ -15,6 +15,13 @@ namespace dacsanviet
 
             //Xác nhận thay đổi mật khẩu
             routes.MapRoute(
+                name: "Cart index",
+                url: "gio-hang",
+                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional }
+            );
+
+            //Xác nhận thay đổi mật khẩu
+            routes.MapRoute(
                 name: "confirm change pass",
                 url: "confirm-change-pass",
                 defaults: new { controller = "Login", action = "Confirm_ForgetPass", id = UrlParameter.Optional }

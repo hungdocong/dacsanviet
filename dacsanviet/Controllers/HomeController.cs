@@ -12,11 +12,7 @@ namespace dacsanviet.Controllers
     {
         public ActionResult Index()
         {
-            var menuModel = new MenuBusiness();
-
-            //Menu
-            ViewBag.GetMenu = menuModel.getMenus();//menu mẹ
-            ViewBag.GetParentMenu = menuModel.getParentMenu();//menu con
+            
 
             //Product
             var proModel = new ProductBusiness();
@@ -30,6 +26,17 @@ namespace dacsanviet.Controllers
             ViewBag.getLastCate = proModel.getLastCategory();//lấy loại sản phẩm, lấy 3 cái cuối
 
             return View();
+        }
+
+        //Load menu
+        [ChildActionOnly]
+        public PartialViewResult MainMenu()
+        {
+            var menuModel = new MenuBusiness();
+            //Menu
+            ViewBag.GetMenu = menuModel.getMenus();//menu mẹ
+            ViewBag.GetParentMenu = menuModel.getParentMenu();//menu con
+            return PartialView();
         }
 
         //load sp theo loại sp

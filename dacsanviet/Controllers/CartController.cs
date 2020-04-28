@@ -15,7 +15,14 @@ namespace dacsanviet.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            //hiển thị giỏ        
+            var cart = Session[CartSession];
+            var list = new List<CartDTO>();
+            if (cart != null)
+            {
+                list = (List<CartDTO>)cart;
+            }
+            return View(list);
         }
 
         public JsonResult AddCart(long product_ID, int quantity)
@@ -58,6 +65,18 @@ namespace dacsanviet.Controllers
             {
                 status = true
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        //Xóa từng sản phẩm
+        public JsonResult Delete(long id)
+        {
+            var cartSec = (List<CartDTO>)Session[CartSession];
+            cartSec.RemoveAll(x => x.Product.product_ID == id);
+            Session[CartSession] = cartSec;
+            return Json(new
+            {
+                status = true
+            });
         }
     }
 }

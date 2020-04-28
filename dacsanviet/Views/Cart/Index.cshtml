@@ -1,11 +1,12 @@
-﻿
+﻿@model List<dacsanviet.Models.DTO.CartDTO>
 @{
     ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    long sum = 0;
 }
 
 <!--breadcrumb area start-->
-<div class="breadcrumb_container">
+@*<div class="breadcrumb_container">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -18,7 +19,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!--breadcrumb area end-->
 
 <div class="cart_container">
@@ -26,7 +27,7 @@
         <div class="row">
             <div class="col-12">
                 <h5 class="cart_name">Giỏ hàng</h5>
-                <span>(5 sản phẩm)</span>
+                <span>(@Model.Count sản phẩm)</span>
             </div>
         </div>
     </div>
@@ -39,67 +40,42 @@
                     <div class="table-content table-responsive">
                         <table style="float: left;">
                             <tbody>
-                                <tr>
-                                    <td class="product-thumbnail"><img src="assets/img/product/1.jpg" alt=""></td>
-                                    <td class="product-name">
-                                        <a href="#">Chôm chôm miền Tây</a>
-                                        <p>
-                                            Cung cấp bởi: <span class="amount">
-                                                <a href="#" class="del-item">
-                                                    nông sản
-                                                    Cần Thơ
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p>
-                                            <a href="#" class="del-item"> Xóa</a>
-                                        </p>
-                                    </td>
-                                    <td class="product-price" style="width: 165px;">
-                                        <h5 class="pri price">400.000 đ</h5>
-                                        <h5 class="price2">
-                                            339.000 đ
-                                            <span class="sale">-18%</span>
-                                        </h5>
-                                    </td>
-                                    <td class="product-price">
-                                        <button type="button" class="btn btn-default bootstrap-touchspin-down">-</button>
-                                        <input type="text" value="1" class="input-count">
-                                        <button type="button" class="btn btn-default bootstrap-touchspin-up">+</button>
-                                    </td>
+                                @foreach (var item in Model)
+                                {
+                                    var discount = (int)((1 - (item.Product.promotionPrice / item.Product.price)) * 100);
+                                    <tr>
+                                        <td class="product-thumbnail"><img src="@item.Product.productImage" alt=""></td>
+                                        <td class="product-name">
+                                            <a href="#">@item.Product.productName</a>
+                                            <p>
+                                                Cung cấp bởi: <span class="amount">
+                                                    <a href="#" class="del-item">
+                                                        nông sản
+                                                        Cần Thơ
+                                                    </a>
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <a href="javascript:void(0)" class="del-item btn-Delete" data-id="@item.Product.product_ID"> Xóa</a>
+                                            </p>
+                                        </td>
+                                        <td class="product-price" style="width: 165px;">
+                                            <h5 class="pri price">@item.Product.promotionPrice.Value.ToString("N0") ₫</h5>
+                                            <h5 class="price2">
+                                                @item.Product.price.Value.ToString("N0") ₫
+                                                <span class="sale">-@discount%</span>
+                                            </h5>
+                                        </td>
+                                        <td class="product-price">
+                                            <button type="button" class="btn btn-default bootstrap-touchspin-down">-</button>
+                                            <input type="text" value="@item.Quantity" class="input-count">
+                                            <button type="button" class="btn btn-default bootstrap-touchspin-up">+</button>
+                                        </td>
 
-                                </tr>
+                                    </tr>
+                                    sum += (long)item.Product.promotionPrice * item.Quantity;
+                                }
 
-                                <tr>
-                                    <td class="product-thumbnail"><img src="assets/img/product/1.jpg" alt=""></td>
-                                    <td class="product-name">
-                                        <a href="#">Chôm chôm miền Tây</a>
-                                        <p>
-                                            Cung cấp bởi: <span class="amount">
-                                                <a href="#" class="del-item">
-                                                    nông sản
-                                                    Cần Thơ
-                                                </a>
-                                            </span>
-                                        </p>
-                                        <p>
-                                            <a href="#" class="del-item"> Xóa</a>
-                                        </p>
-                                    </td>
-                                    <td class="product-price" style="width: 165px;">
-                                        <h5 class="pri price">400.000 đ</h5>
-                                        <h5 class="price2">
-                                            339.000 đ
-                                            <span class="sale">-18%</span>
-                                        </h5>
-                                    </td>
-                                    <td class="product-price">
-                                        <button type="button" class="btn btn-default bootstrap-touchspin-down">-</button>
-                                        <input type="text" value="1" class="input-count">
-                                        <button type="button" class="btn btn-default bootstrap-touchspin-up">+</button>
-                                    </td>
-
-                                </tr>
                             </tbody>
                         </table>
 
@@ -112,17 +88,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3" style="height: 155px;">
-                    <div class="total-container" style="background-color: #f5f5f5; border-radius: 5px;">
+                <div class="col-3" style="height: 120px; background-color: #f5f5f5; border-radius: 5px;">
+                    <div class="total-container" style="">
                         <div class="cart_totals  text-right">
                             <div class="cart-subtotal">
                                 <span>Tạm tính: </span>
-                                <strong>400.000 đ</strong>
+                                <strong>@sum.ToString("N0") ₫</strong>
                             </div>
                             <div class="order-total">
                                 <span>Thành tiền:</span>
                                 <div class="amount">
-                                    <strong>1.400.000 đ </strong>
+                                    <strong>@sum.ToString("N0") ₫</strong>
                                     <h6 class="text-right">
                                         <small>(Đã bao gồm VAT nếu có)</small>
                                     </h6>

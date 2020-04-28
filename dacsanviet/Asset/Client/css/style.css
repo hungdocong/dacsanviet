@@ -3241,12 +3241,12 @@ span.control_labels {
 /* table-responsive */
 .cart_main_area {
   border-bottom: 1px solid #ededed;
-  padding: 90px 0;
+  /*padding: 90px 0;*/
 }
 .table-content.table-responsive table thead tr th,.table-content.table-responsive table tbody tr td {
 	padding: 20px 10px;
-	border-bottom: 1px solid #ddd;
-	border-right: 1px solid #ddd;
+	/*border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;*/
 }
 .table-content.table-responsive table thead tr th {
 	text-transform: uppercase;
@@ -3270,8 +3270,8 @@ span.control_labels {
 	text-align: center;
 }
 .table-content.table-responsive table {
-	border-top: 1px solid #ddd;
-	border-left: 1px solid #ddd;
+	/*border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;*/
 }
 .table-content.table-responsive table tbody tr td {
   padding: 0;
