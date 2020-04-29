@@ -36,5 +36,7 @@ namespace dacsanviet.Models.DTO
         public string phone { get; set; }
         public string fax { get; set; }
         public string image { get; set; }
+        public string ProductCategoryName { get; set; }
+        public string ProductCategoryMetatitle { get; set; }
     }
 }

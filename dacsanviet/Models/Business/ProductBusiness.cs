@@ -17,6 +17,40 @@ namespace dacsanviet.Models.Business
             return db.Products.Take(10).ToList();
         } 
 
+        //Lấy chi tiết sp
+        public ProductDTO getDetail(long product_ID)
+        {
+            var query = from sto in db.Stores
+                        join pro in db.Products on sto.product_ID equals pro.product_ID
+                        join com in db.Companies on sto.company_ID equals com.company_ID
+                        where pro.product_ID == product_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            name = com.name
+                        };
+            return query.SingleOrDefault();
+        }
+
+        //Lấy ra loại sp từ ID của sp
+        public ProductCategory GetProductCategoryByProducID(long product_ID)
+        {
+            var query = from pro in db.Products
+                        join pc in db.ProductCategories on pro.productCategory_ID equals pc.productCategory_ID
+                        where pro.product_ID == product_ID
+                        select new ProductCategory()
+                        {
+                            name = pc.name,
+                            productCategory_ID = pc.productCategory_ID
+                        };
+            return query.SingleOrDefault();
+        }
+
         //sản phẩm gợi ý
         public List<Product> recommendProduct()
         {

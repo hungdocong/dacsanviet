@@ -4582,3 +4582,157 @@ td p a:hover {
     font-size: 11px;
     padding: 4px;
 }
+
+/*Style product detail*/
+
+.priceDetail {
+    color: red;
+    font-size: 24px;
+}
+
+.price-item {
+    font-size: 13px;
+    margin: 4px 0;
+    font-weight: 300;
+    color: #9b9b9b;
+}
+
+span.discount-percent {
+    font-weight: 400;
+    color: #ff3425;
+    font-size: 13px;
+}
+
+#span-saving-price {
+    font-size: 13px;
+    margin: 4px 0;
+    font-weight: 300;
+    color: #9b9b9b;
+}
+
+.old-price-item {
+    line-height: 18px;
+    font-size: 13px;
+    color: #9b9b9b;
+    font-weight: 300;
+    margin: 0;
+}
+
+span.price-label {
+    font-size: 13px;
+    margin: 4px 0;
+    font-weight: 300;
+    color: #9b9b9b;
+}
+
+.product-customer-box .product-customer-content .product-customer-col-1 {
+    padding: 0;
+    margin: 0;
+    width: 363px;
+    border-right: 1px solid #f7f7f7;
+}
+
+.product-customer-box .product-customer-content .product-customer-col-2 {
+    margin-right: 0;
+    padding-right: 33px;
+    padding-left: 91px;
+}
+
+.product-customer-box .product-customer-content .product-customer-col-3 {
+    margin-top: 5px;
+    width: 342px;
+    float: left;
+    min-height: 120px;
+    text-align: center;
+}
+
+.info {
+    margin-top: 60px;
+}
+
+    .info .title {
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    .info .item-brand {
+        margin-top: 2px;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+        .info .item-brand p h6 a {
+            color: #007ff0 !important;
+        }
+
+        .info .item-brand h6 {
+            display: inline-block;
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .info .item-brand p {
+            display: inline-block;
+        }
+
+.review-file .button {
+    font-size: 13px;
+    color: #189eff;
+    border: 1px solid;
+    margin: 0px 0px -10px 10px;
+    padding: 7px 16px !important;
+    border-radius: 5px;
+    text-decoration: none;
+    text-shadow: none;
+    width: auto !important;
+    background: #fff;
+    font-weight: 400;
+}
+
+    .review-file .button:hover {
+        color: #fff;
+        background: #189eff;
+        border-color: #189eff;
+        text-decoration: none;
+    }
+
+.review-file .ChosseImage {
+    font-weight: 400;
+    color: #444;
+    margin: 1px 0 28px;
+    line-height: 31px;
+}
+
+.btn-add-review {
+    font-weight: 500;
+    font-size: 13px;
+    height: 40px;
+    background: #fdd22f;
+    border: 0;
+    color: #333;
+    width: 229px;
+    margin-top: 15px;
+    float: right;
+    border-radius: 5px;
+}
+
+    .btn-add-review:hover {
+        cursor: pointer;
+        color: #050505;
+        background: #f3de92;
+    }
+
+.comments_note {
+    float: right;
+    margin-left: 20px;
+}
+
+    .comments_note span {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .comments_note i {
+        font-size: 14px;
+    }
