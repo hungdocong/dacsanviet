@@ -17,15 +17,7 @@
 }
 
 @section jsSection{
-    
-    <script>
-        function btnTabImage(imgs) {
-            var expandImg = document.getElementById("expandedImg");
-            expandImg.src = imgs.src;
-            expandImg.parentElement.style.display = "block";
-        }
-    </script>
-    
+    <script src="~/Asset/Client/js/detail.js"></script>
 }
 
 <!--breadcrumb area start-->
@@ -143,6 +135,7 @@
                     </div>
                     <div class="product_information">
                         <div id="product_description_short">
+                            <!--detail-->
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga eum minus
                                 necessitatibus commodi veniam in a quibusdam voluptatem! Nihil, iste non eius amet
@@ -219,6 +212,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane active" id="description" role="tabpanel">
                         <div class="product-description">
+                            <!--description-->
                             <p>
                                 Nước Giải Khát Có Gas Wana Hương Yuzu (320ml/lon) với hương thơm đặc trưng của quả
                                 yuzu,
@@ -322,7 +316,6 @@
                             <div class="comment_clearfix">
                                 <div class="comment_author">
 
-
                                 </div>
                                 <div class="comment_author_infos">
                                     <div class="row">
@@ -332,95 +325,67 @@
                                                 <div class="product-customer-content">
 
                                                     <div class="clearfix"></div>
-                                                    <h3 class="js-customer-h3">Gửi nhận xét của bạn</h3>
-                                                    <div class="col-6">
+                                                    <div class="comment-product">
+                                                        <h4 class="title">
+                                                            Chia sẻ nhận xét về sản phẩm
+                                                        </h4>
+                                                        <button id="btn-comment">Viết nhận xét của bạn</button>
+                                                    </div>
+                                                    <div class="col-6 comment-to" style="display: none">
 
-                                                        <form action="" method="post" id="addReviewFrm"
-                                                              novalidate="novalidate" class="bv-form">
-                                                            <button type="submit" class="bv-hidden-submit"
-                                                                    style="display: none; width: 0px; height: 0px;"></button>
-                                                            <input type="hidden" name="entity_pk_value"
-                                                                   value="22250251" id="entity_pk_value">
-                                                            <input type="hidden" name="productset_id" value="145"
-                                                                   id="productset_id">
-                                                            <div class="rate form-group has-feedback"
-                                                                 id="rating_wrapper">
+                                                        <form action="" method="post" id="addReviewFrm" class="bv-form">
+                                                            <input type="hidden" name="numberStart" id="numberStart">
+                                                            <div class="rate form-group has-feedback" id="rating_wrapper">
                                                                 <label>1. Đánh giá của bạn về sản phẩm này:</label>
-                                                                <div class="star_content clearfix">
-                                                                    <ul>
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                        <li><i class="fa fa-star"></i></li>
-                                                                    </ul>
+                                                                <div class="bigstars" style="float:right">
+                                                                    <div class="rateit_star" data-rateit-value="5" data-rateit-starwidth="32" data-rateit-starheight="32">
+
+                                                                    </div>
                                                                 </div>
+                                                                
                                                             </div>
 
-                                                            <div class="title form-group" id="title_wrapper">
-                                                                <label for="review_title">
-                                                                    2. Tiêu đề của nhận
-                                                                    xét:
-                                                                </label>
-                                                                <input type="text"
-                                                                       placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
-                                                                       name="title" id="review_title"
-                                                                       class="form-control input-sm">
-
-                                                            </div>
-
-                                                            <div class="review-content form-group has-feedback">
-                                                                <label for="review_detail">
-                                                                    3. Viết nhận xét của bạn
-                                                                    vào bên dưới:
-                                                                </label>
-                                                                <textarea placeholder="Nhận xét của bạn về sản phẩm này"
-                                                                          class="form-control" name="detail"
-                                                                          id="review_detail" cols="30" rows="10"
-                                                                          data-bv-field="detail"></textarea><i class="form-control-feedback"
-                                                                                                               data-bv-icon-for="detail"
-                                                                                                               style="display: none;"></i>
-                                                                <small class="help-block"
-                                                                       data-bv-validator="callback"
-                                                                       data-bv-for="detail"
-                                                                       data-bv-result="NOT_VALIDATED"
-                                                                       style="display: none;">
-                                                                    Nội dung chứa ít nhất 50
-                                                                    ký tự
-                                                                </small>
-                                                            </div>
-
-                                                            <div id="imageUploader">
-                                                                <div data-reactroot=""
-                                                                     class="review-file form-group">
-                                                                    <input type="hidden" id="imageUploadPath"
-                                                                           name="images[][file_path]" value="">
-                                                                    <input type="file" multiple="" id="fileSelector"
-                                                                           accept="image/*" style="display: none;">
-                                                                    <label for="fileSelector">
-                                                                        Thêm hình sản phẩm nếu có (tối đa 5 hình):
-                                                                        <span class="button">Chọn hình</span>
+                                                                <div class="title form-group" id="title_wrapper">
+                                                                    <label for="review_title">
+                                                                        2. Tiêu đề của nhận xét:
                                                                     </label>
-                                                                    <p class="error-wrap"></p>
-                                                                    <div class="files"></div>
+                                                                    <input type="text" placeholder="Nhập tiêu đề nhận xét (không bắt buộc)" name="title" id="review_title"
+                                                                           class="form-control input-sm">
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="action">
-                                                                <div class="word-counter"></div>
-                                                                <div class="checkbox" style="display:none;">
-                                                                    <label>
-                                                                        <input id="show_information" type="checkbox"
-                                                                               checked="" value="1"> Hiển thị thông tin
-                                                                        mua hàng trong phần nhận xét
+                                                                <div class="review-content form-group has-feedback">
+                                                                    <label for="review_detail">
+                                                                        3. Viết nhận xét của bạn
+                                                                        vào bên dưới:
                                                                     </label>
+                                                                    <textarea placeholder="Nhận xét của bạn về sản phẩm này"
+                                                                              class="form-control" name="detail"
+                                                                              id="review_detail" cols="30" rows="10"
+                                                                              data-bv-field="detail"></textarea>
+                                                                    
                                                                 </div>
-                                                                <button type="submit" class="btn btn-default btn-add-review">Gửi nhận xét</button>
-                                                            </div>
-                                                        </form>
+
+                                                                <div id="imageUploader">
+                                                                    <div data-reactroot="" class="review-file form-group">
+                                                                        <input type="hidden" id="imageUploadPath" name="images[][file_path]" value="">
+                                                                        <input type="file" multiple="" id="fileSelector" accept="image/*" style="display: none;">
+                                                                        <label for="fileSelector">
+                                                                            Thêm hình sản phẩm nếu có (tối đa 5 hình):
+                                                                            <span class="button">Chọn hình</span>
+                                                                        </label>
+                                                                        <p class="error-wrap"></p>
+                                                                        <div class="files"></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="action">
+                                                                    <button type="submit" class="btn btn-default btn-add-review">Gửi nhận xét</button>
+                                                                    <button type="button" class="btn btn-primary btn-add-close">Đóng</button>
+                                                                </div>
+</form>
 
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-6 product-to" style="display: none">
                                                         <div class="product-detail">
                                                             <div class="image col-5">
                                                                 <a href="">

@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------------------
+﻿/*-----------------------------------------------------------------------------------
 
     Template Name: OrganicFood - eCommerce Bootstrap4 Template
     Description: This is html5 template
@@ -5425,7 +5425,7 @@ span.price-label {
     font-size: 13px;
     height: 40px;
     background: #fdd22f;
-    border: 0;
+    border: solid 1px #91959b;
     color: #333;
     width: 229px;
     margin-top: 15px;
@@ -5434,6 +5434,26 @@ span.price-label {
 }
 
     .btn-add-review:hover {
+        cursor: pointer;
+        color: #050505;
+        background: #f3de92;
+    }
+
+.btn-add-close {
+    font-weight: 500;
+    font-size: 13px;
+    height: 40px;
+    background: #ffffff;
+    border: solid 1px #91959b;
+    color: #333;
+    width: 229px;
+    margin-top: 15px;
+    float: right;
+    border-radius: 5px;
+    margin-right:25px;
+}
+
+    .btn-add-close:hover {
         cursor: pointer;
         color: #050505;
         background: #f3de92;
@@ -5452,3 +5472,64 @@ span.price-label {
     .comments_note i {
         font-size: 14px;
     }
+
+.comment-product h4 {
+    color: rgb(68, 68, 68);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0px;
+}
+
+.comment-product {
+    padding: 10px 31px;
+    margin-top: -40px;
+}
+
+.comment-product button {
+    cursor: pointer;
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0px;
+    background: rgb(253, 210, 47);
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 4px;
+    outline: none;
+}
+
+    .comment-product button:hover {
+        opacity: 0.8;
+    }
+
+
+
+/*Start đánh giá sp*/
+
+div.bigstars div.rateit-range {
+    background: url(../img/start/star-white32.png);
+    height: 32px;
+}
+
+div.bigstars div.rateit-hover {
+    background: url(../img/start/star-gold32.png);
+}
+
+div.bigstars div.rateit-selected {
+    background: url(../img/start/star-gold32.png);
+}
+
+/* div.bigstars div.rateit-reset {
+            background: url(star-black32.png);
+            width: 32px;
+            height: 32px;
+        } */
+
+div.bigstars div.rateit-reset:hover {
+    background: url(../img/start/star-white32.png);
+}

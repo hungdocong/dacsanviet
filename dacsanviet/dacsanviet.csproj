@@ -256,6 +256,7 @@
     <Content Include="Asset\Client\css\owl.carousel.min.css" />
     <Content Include="Asset\Client\css\owl.video.play.png" />
     <Content Include="Asset\Client\css\PNotifyBrightTheme.css" />
+    <Content Include="Asset\Client\css\rateit.css" />
     <Content Include="Asset\Client\css\responsive.css" />
     <Content Include="Asset\Client\css\style.css" />
     <Content Include="Asset\Client\fonts\fontawesome-webfont3e6e.svg" />
@@ -383,10 +384,15 @@
     <Content Include="Asset\Client\img\slider\2.jpg" />
     <Content Include="Asset\Client\img\slider\banner2_home3.jpg" />
     <Content Include="Asset\Client\img\slider\home3.jpg" />
+    <Content Include="Asset\Client\img\start\delete.gif" />
+    <Content Include="Asset\Client\img\start\star-gold32.png" />
+    <Content Include="Asset\Client\img\start\star-white32.png" />
+    <Content Include="Asset\Client\img\start\star.gif" />
     <Content Include="Asset\Client\img\success.jpg" />
     <Content Include="Asset\Client\js\ajax-mail.js" />
     <Content Include="Asset\Client\js\bootstrap.min.js" />
     <Content Include="Asset\Client\js\Cart.js" />
+    <Content Include="Asset\Client\js\detail.js" />
     <Content Include="Asset\Client\js\home.js" />
     <Content Include="Asset\Client\js\imagesloaded.pkgd.min.js" />
     <Content Include="Asset\Client\js\isotope.pkgd.min.js" />
@@ -395,6 +401,7 @@
     <Content Include="Asset\Client\js\jquery.counterup.min.js" />
     <Content Include="Asset\Client\js\jquery.meanmenu.min.js" />
     <Content Include="Asset\Client\js\jquery.min.js" />
+    <Content Include="Asset\Client\js\jquery.rateit.js" />
     <Content Include="Asset\Client\js\jquery.validate.min.js" />
     <Content Include="Asset\Client\js\lib_UI_jquery_js_jquery-ui-1.9.2.custom.min.js" />
     <Content Include="Asset\Client\js\login_register.js" />
