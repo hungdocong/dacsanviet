@@ -13,6 +13,7 @@
             $.each(data, function (i, item) {
                 if (dem == 6)
                     return;
+                var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
                             rows += '<div class="single__product" style="width: 16%;">'+
                                             '<div class="single_product__inner">';
                                             if (item.promotionPrice != null) {
@@ -20,14 +21,14 @@
                                                 rows += '<span class="discount_price">-' + discount + '%</span >';
                                             }
                                             rows +='<div class="product_img">'+
-                                                        '<a href="#">'+
+                                                        '<a href="'+ url +'">'+
                                                             '<img style="width: 202px;height: 202px" src="'+item.productImage+'" alt="">'+
                                                         '</a>'+
                                                     '</div>'+
                                                     '<div class="product__content text-center">'+
                                                         '<div class="produc_desc_info">'+
                                                             '<div class="product_title">'+
-                                                                '<h4><a href="">'+item.productName+'</a></h4>'+
+                                                                '<h4><a href="'+ url +'">'+item.productName+'</a></h4>'+
                                                             '</div>'+
                                                             '<div class="product_price">';
                                                             if(item.promotionPrice != null){
@@ -40,8 +41,8 @@
                                                     '</div>'+
                                                     '<div class="product__hover">'+
                                                         '<ul>'+
-                                                            '<li><a href="#"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>'+
-                                                            '<li><a href="product-details.html" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>'+
+                                                            '<li><a href="javascript:void(0)" class="btn-addCart" data-id="' +item.product_ID+'" data-quantity="1"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>'+
+                                                        '<li><a href="' + url +'" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>'+
                                                         '</ul>'+
                                                     '</div>'+
                                             '</div>'+
@@ -104,6 +105,7 @@ function btnTabs_2(id) {
             $.each(data, function (i, item) {
                 if (dem == 6)
                     return;
+                var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
                             rows += '<div class="single__product" style="width: 16%;">'+
                                             '<div class="single_product__inner">';
                                             if (item.promotionPrice != null) {
@@ -111,14 +113,14 @@ function btnTabs_2(id) {
                                                 rows += '<span class="discount_price">-' + discount + '%</span >';
                                             }
                                             rows +='<div class="product_img">'+
-                                                        '<a href="#">'+
+                                                        '<a href="'+ url +'">'+
                                                             '<img style="width: 202px;height: 202px" src="'+item.productImage+'" alt="">'+
                                                         '</a>'+
                                                     '</div>'+
                                                     '<div class="product__content text-center">'+
                                                         '<div class="produc_desc_info">'+
                                                             '<div class="product_title">'+
-                                                                '<h4><a href="">'+item.productName+'</a></h4>'+
+                                                                '<h4><a href="'+ url +'">'+item.productName+'</a></h4>'+
                                                             '</div>'+
                                                             '<div class="product_price">';
                                                             if(item.promotionPrice != null){
@@ -131,8 +133,8 @@ function btnTabs_2(id) {
                                                     '</div>'+
                                                     '<div class="product__hover">'+
                                                         '<ul>'+
-                                                            '<li><a href="#"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>'+
-                                                            '<li><a href="product-details.html" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>'+
+                                                        '<li><a href="javascript:void(0)" class="btn-addCart" data-id="' + item.product_ID +'" data-quantity="1"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>'+
+                                                        '<li><a href="' + url +'" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>'+
                                                         '</ul>'+
                                                     '</div>'+
                                             '</div>'+

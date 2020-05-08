@@ -12,9 +12,23 @@ namespace dacsanviet.Models.Business
         private DacSanVietEntities db = new DacSanVietEntities();
 
         //sản phẩm đặc trưng
-        public List<Product> featureProduct()
+        public List<ProductDTO> featureProduct()
         {
-            return db.Products.Take(10).ToList();
+            var query = from pro in db.Products
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name
+                        };
+
+            return query.Take(10).ToList();
         } 
 
         //Lấy chi tiết sp
@@ -34,28 +48,46 @@ namespace dacsanviet.Models.Business
                             promotionPrice = pro.promotionPrice,
                             name = com.name
                         };
-            return query.SingleOrDefault();
+            return query.Single();
+        }
+
+        //tăng lượt xem sp
+        public void increaseViewProduct(long product_ID)
+        {
+            var pro = db.Products.Find(product_ID);
+            pro.viewCount += 1;
+            db.SaveChanges();
         }
 
         //Lấy ra loại sp từ ID của sp
         public ProductCategory GetProductCategoryByProducID(long product_ID)
         {
-            var query = from pro in db.Products
-                        join pc in db.ProductCategories on pro.productCategory_ID equals pc.productCategory_ID
-                        where pro.product_ID == product_ID
-                        select new ProductCategory()
-                        {
-                            name = pc.name,
-                            productCategory_ID = pc.productCategory_ID
-                        };
-            return query.SingleOrDefault();
+            var pro = db.Products.Find(product_ID);
+            return db.ProductCategories.Find(pro.productCategory_ID);
         }
 
-        //sản phẩm gợi ý
-        public List<Product> recommendProduct()
+
+        //lấy sp cùng loại
+        public List<ProductDTO> GetProductSameCategory(long productCategory_ID)
         {
-            return db.Products.ToList();
+            var query = from pro in db.Products
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
+                        where pro.productCategory_ID == productCategory_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name,
+                            viewCount = pro.viewCount
+                        };
+            return query.OrderBy(x => x.viewCount).ToList();
         }
+
 
         // lấy loại sản phẩm, lấy 3 dữ liệu đầu
         public List<ProductCategory> getCategories()
@@ -92,6 +124,7 @@ namespace dacsanviet.Models.Business
             var query = from store in db.Stores
                         join pro in db.Products on store.product_ID equals pro.product_ID
                         join comp in db.Companies on store.company_ID equals comp.company_ID
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
                         where store.company_ID == com.company_ID
                         select new ProductDTO()
                         {
@@ -101,7 +134,9 @@ namespace dacsanviet.Models.Business
                             productImage = pro.productImage,
                             price = pro.price,
                             promotionPrice = pro.promotionPrice,
-                            image = comp.image
+                            image = comp.image,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name
                         };
             return query.ToList();
         }
@@ -113,21 +148,64 @@ namespace dacsanviet.Models.Business
         }
 
         //lấy sp theo loại sp
-        public List<Product> GetProductByCategory(long productCategory_ID)
+        public List<ProductDTO> GetProductByCategory(long productCategory_ID)
         {
-            return db.Products.Where(x => x.productCategory_ID == productCategory_ID).ToList();
+            var query = from pro in db.Products
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
+                        where pro.productCategory_ID == productCategory_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name
+                        };
+            return query.ToList();
         }
 
         //sản phẩm mới
-        public List<Product> newProduct()
+        public List<ProductDTO> newProduct()
         {
-            return db.Products.Take(10).ToList();
+            var query = from pro in db.Products
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name
+                        };
+
+            return query.Take(10).ToList();
         }
 
         //sản phẩm bán chạy
-        public List<Product> topSellProduct()
+        public List<ProductDTO> topSellProduct()
         {
-            return db.Products.Take(10).ToList();
+            var query = from pro in db.Products
+                        join cate in db.ProductCategories on pro.productCategory_ID equals cate.productCategory_ID
+                        select new ProductDTO()
+                        {
+                            product_ID = pro.product_ID,
+                            productName = pro.productName,
+                            metatitle = pro.metatitle,
+                            productImage = pro.productImage,
+                            price = pro.price,
+                            promotionPrice = pro.promotionPrice,
+                            ProductCategoryMetatitle = cate.metatitle,
+                            nameProductCategory = cate.name,
+
+                        };
+
+            return query.Take(10).ToList();
         }
     }
 }

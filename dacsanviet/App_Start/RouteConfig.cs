@@ -13,6 +13,13 @@ namespace dacsanviet
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Chi tiết sp
+            routes.MapRoute(
+                name: "product detail",
+                url: "{ProductCategoryMetatitle}/{metatitle}-{product_ID}",
+                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional }
+            );
+
             //Xác nhận thay đổi mật khẩu
             routes.MapRoute(
                 name: "confirm change pass",

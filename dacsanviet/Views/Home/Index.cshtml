@@ -1,16 +1,16 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Nông sản Việt Nam";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var featureProduct = (List<dacsanviet.Models.Entity.Product>)ViewBag.featureProduct;
+    var featureProduct = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.featureProduct;
     var getCategory = (List<dacsanviet.Models.Entity.ProductCategory>)ViewBag.getCategory;
-    var newProduct = (List<dacsanviet.Models.Entity.Product>)ViewBag.newProduct;
-    var topSellProduct = (List<dacsanviet.Models.Entity.Product>)ViewBag.topSellProduct;
+    var newProduct = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.newProduct;
+    var topSellProduct = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.topSellProduct;
     var getLastCate = (List<dacsanviet.Models.Entity.ProductCategory>)ViewBag.getLastCate;
     var getProductByCompany = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.getProductByCompany;
     long min = 10000, max = 0;
     string image = "";
     int dem = 0;
+    var md5 = new dacsanviet.Models.DTO.MD5();
 }
 
 @section jsSection{
@@ -105,6 +105,7 @@
 
                 @foreach (var item in topSellProduct)
                 {
+                    var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">
@@ -115,14 +116,14 @@
                                     <span class="discount_price">-@discount%</span>
                                 }
                                 <div class="product_img">
-                                    <a href="#">
+                                    <a href="@url">
                                         <img src="@item.productImage" alt="">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">
                                     <div class="produc_desc_info">
                                         <div class="product_title">
-                                            <h4><a href="product-details.html">@item.productName</a></h4>
+                                            <h4><a href="@url">@item.productName</a></h4>
                                         </div>
                                         <div class="product_price">
                                             @if (item.promotionPrice != null)
@@ -140,7 +141,7 @@
                                         <ul>
                                             <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
                                             @*<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>*@
-                                            <li><a href="" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                            <li><a href="@url" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -214,6 +215,7 @@
                         {
                             break;
                         }
+                        var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
                         <div class="single__product">
                             <div class="single_product__inner">
                                 @if (item.promotionPrice != null)
@@ -222,7 +224,7 @@
                                     <span class="discount_price">-@discount%</span>
                                 }
                                 <div class="product_img">
-                                    <a href="#">
+                                    <a href="@url">
                                         <img src="@item.productImage" alt="">
                                     </a>
                                 </div>
@@ -230,7 +232,7 @@
                                     <div class="produc_desc_info">
                                         <div class="product_title">
                                             <h4>
-                                                <a href="product-details.html">@item.productName</a>
+                                                <a href="@url">@item.productName</a>
                                             </h4>
                                         </div>
                                         <div class="product_price">
@@ -248,8 +250,8 @@
 
                                     <div class="product__hover">
                                         <ul>
-                                            <li><a href="#" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
-                                            <li><a href="" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                            <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1" title="Thêm vào giỏ hàng"><i class="ion-android-cart"></i></a></li>
+                                            <li><a href="@url" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -373,6 +375,7 @@
 
                 @foreach (var item in newProduct)
                 {
+                    var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
                     <div class="col-lg-2">
                         <div class="single__product">
                             <div class="single_product__inner">
@@ -383,14 +386,14 @@
                                     <span class="discount_price">-@discount%</span>
                                 }
                                 <div class="product_img">
-                                    <a href="#">
+                                    <a href="@url">
                                         <img src="@item.productImage" alt="">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">
                                     <div class="produc_desc_info">
                                         <div class="product_title">
-                                            <h4><a href="/">@item.productName</a></h4>
+                                            <h4><a href="@url">@item.productName</a></h4>
                                         </div>
                                         <div class="product_price">
 
@@ -407,9 +410,9 @@
                                     </div>
                                     <div class="product__hover">
                                         <ul>
-                                            <li><a href="#"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>
+                                            <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>
                                             @*<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>*@
-                                            <li><a href="product-details.html" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                            <li><a href="@url" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

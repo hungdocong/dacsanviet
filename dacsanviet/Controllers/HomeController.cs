@@ -1,4 +1,5 @@
 ﻿using dacsanviet.Models.Business;
+using dacsanviet.Models.DTO;
 using dacsanviet.Models.Entity;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,6 @@ namespace dacsanviet.Controllers
     {
         public ActionResult Index()
         {
-            var menuModel = new MenuBusiness();
-
-            //Menu
-            ViewBag.GetMenu = menuModel.getMenus();//menu mẹ
-            ViewBag.GetParentMenu = menuModel.getParentMenu();//menu con
-
             //Product
             var proModel = new ProductBusiness();
             ViewBag.featureProduct = proModel.featureProduct();//sản phẩm đặc trưng
@@ -36,16 +31,31 @@ namespace dacsanviet.Controllers
         public JsonResult getProductByCategory(long productCategory_ID)
         {
             var proModel = new ProductBusiness();
-            List<Product> products = proModel.GetProductByCategory(productCategory_ID);
+            List<ProductDTO> products = proModel.GetProductByCategory(productCategory_ID);
             return Json(products.Select(x => new{
                 product_ID = x.product_ID,
                 productName = x.productName,
                 price = x.price,
                 promotionPrice = x.promotionPrice,
                 productImage = x.productImage,
-                productCategory_ID = x.productCategory_ID
+                productCategory_ID = x.productCategory_ID,
+                ProductCategoryMetatitle = x.ProductCategoryMetatitle,
+                nameProductCategory = x.name
             }
             ), JsonRequestBehavior.AllowGet);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult MainMenu()
+        {
+
+            var menuModel = new MenuBusiness();
+
+            //Menu
+            ViewBag.GetMenu = menuModel.getMenus();//menu mẹ
+            ViewBag.GetParentMenu = menuModel.getParentMenu();//menu con
+
+            return PartialView();
         }
 
         public ActionResult Page404()

@@ -17,20 +17,21 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/Asset/Client/img/logo/icon.png">
     <!-- all css here -->
     <link href="~/Asset/Client/css/lib_UI_jquery_css_custom-theme_jquery-ui-1.9.2.custom.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Asset/Client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/animate.css">
-    <link rel="stylesheet" href="Asset/Client/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/chosen.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/ionicons.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/font-awesome.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/meanmenu.min.css">
-    <link rel="stylesheet" href="Asset/Client/css/bundle.css">
-    <link rel="stylesheet" href="Asset/Client/css/style.css">
-    <link rel="stylesheet" href="Asset/Client/css/responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="~/Asset/Client/css/animate.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/chosen.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/meanmenu.min.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/bundle.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/style.css">
+    <link rel="stylesheet" href="~/Asset/Client/css/responsive.css">
     <link href="~/Asset/Client/css/bootstrap-social.css" rel="stylesheet" />
     <link href="~/Asset/Client/css/PNotifyBrightTheme.css" rel="stylesheet" />
-    <script src="Asset/Client/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="~/Asset/Client/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://apis.google.com/js/api:client.js"></script>
 </head>
 <body>
@@ -46,11 +47,10 @@
 
                             <div class="logo col-xs-12">
                                 <a href="/">
-                                    <img src="Asset/Client/img/logo/1.png" alt="">
+                                    <img src="~/Asset/Client/img/logo/1.png" alt="">
                                 </a>
                             </div>
-                            @RenderPage("MainMenu.cshtml")
-
+                            @{ Html.RenderAction("MainMenu", "Home");}
                             <div class="header_right_info d-flex">
                                 <div class="search_box">
                                     <div class="search_inner">
@@ -76,203 +76,204 @@
                                             <div class="dHEONM">
                                                 <a class="btn-close"><i class="fa fa-close" style="font-size: 21px;"></i></a>
                                             </div>
-                                             <div class="checkout-cart">
-                                                 <div class="price_content">
-                                                     <div class="cart-total-price">
-                                                         <span class="label">
-                                                             <i class="fa fa-check" style="color:blue; padding-right:5px"></i>
-                                                             Thêm giỏ hàng thành công
-                                                         </span>
-                                                     </div>
-                                                 </div>
-                                                 <div class="min_cart_checkout">
-                                                     <a href="">Xem giỏ hàng và thanh toán</a>
-                                                 </div>
-                                             </div>
-                                        </div>
-                                </div>
-                                <div class="header_account">
-                                    @if (user != null)
-                                    {
-                                        <div class="account_inner">
-                                            Hi! <a href="#" style="color: green; font-size: 15px; font-style: italic;">@user.firstName</a>
-                                        </div>
-                                        <div class="content-setting-dropdown" style="display: none;">
-                                            <div class="language-selector-wrapper">
-                                                <div class="language-selector">
-                                                    <ul>
-                                                        <li><a href=""><i class="fa fa-users" style="padding-right: 5px;"></i>Tài khoản</a></li>
-                                                        <li><a href=""><i class="fa fa-check" style="padding-right: 5px;"></i>Thanh toán</a></li>
-                                                        <li><a href="/logout"><i class="fa fa-sign-out" style="padding-right: 5px;"></i>Thoát tài khoản</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <button type="button" id="btnOpen" class="btn btn-outline-success" data-toggle="modal"
-                                                data-target="#isLogin">
-                                            <i class="fa fa-user pr-2"></i>Đăng nhập
-                                        </button>
-                                    }
-                                    <!-- Modal: isLogin -->
-                                    <div class="modal fade" id="isLogin" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <!--Body-->
-                                                <div class="modal-body">
-
-                                                    <!-- Nav tabs -->
-                                                    <ul class="nav nav-tabs md-tabs nav-justified primary-color"
-                                                        style="font-size: 20px;" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab"
-                                                               href="#panel555" role="tab">
-                                                                <i class="fa fa-user pr-2"></i>Đăng nhập
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#panel666"
-                                                               role="tab">
-                                                                <i class="fa fa-address-book pr-2"></i>Tạo tài
-                                                                khoản
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <!-- Nav tabs -->
-                                                    <!-- Tab panels -->
-                                                    <div class="tab-content">
-
-                                                        <!-- Panel 1 -->
-                                                        <div class="tab-pane fade in show active" id="panel555"
-                                                             role="tabpanel">
-
-                                                            <!-- Nav tabs -->
-
-                                                            <div class="row">
-                                                                <div class="container">
-                                                                    <form class="text-center" id="frmLogin" style="color: #757575; padding: 25px;" method="post">
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">E-mail</label>
-                                                                            <input type="email" id="loginEmail" name="loginEmail" class="form-control mb-4" placeholder="Nhập email">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">Mật khẩu</label>
-                                                                            <input type="password" id="loginPass" name="loginPass" class="form-control mb-4" placeholder="Nhập mật khẩu">
-                                                                        </div>
-
-                                                                        <div class="d-flex justify-content-around">
-                                                                            <div style="padding-bottom: 10px;">
-                                                                                <!-- Forgot password -->
-                                                                                <a href="" onclick="click_btnClose();" data-toggle="modal" data-target="#forgetPass">Quên mật khẩu?</a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- Sign in button -->
-                                                                        <button type="submit" id="UserLogin" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Đăng nhập</button>
-                                                                        <a href="/Login/LoginFacebook" class="btn btn-block btn-social btn-facebook" style="padding-left: 125px; border-radius:5px">
-                                                                            <span class="fa fa-facebook"></span>
-                                                                            Đăng nhập bằng Facebook
-                                                                        </a>
-
-                                                                        <div id="gSignInWrapper" style="margin-top:8px">
-                                                                            <span class="label"></span>
-                                                                            <div id="customBtn">
-                                                                                <a class="btn btn-block btn-social btn-google" style="padding-left: 133px; border-radius:5px; height:0%">
-                                                                                    <span class="fa fa-google"></span> Đăng nhập bằng Google
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <!-- Nav tabs -->
-
-                                                        </div>
-                                                        <!-- Panel 1 -->
-                                                        <!-- Panel 2 -->
-                                                        <div class="tab-pane fade" id="panel666" role="tabpanel">
-
-                                                            <div class="row">
-                                                                <div class="container">
-                                                                    @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { id = "registerUser" }))
-                                                                    {
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">Họ và tên</label>
-                                                                            <input type="text" id="firstName" name="firstName" class="form-control mb-4" placeholder="Nhập Họ và tên">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">E-mail</label>
-                                                                            <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Nhập E-mail">
-                                                                            <span id="email_error" style="color:red"></span>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">Mật khẩu</label>
-                                                                            <input type="password" id="passWord" name="passWord" class="form-control mb-4" placeholder="Mật khẩu từ 6 đến 32 ký tự">
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">Ngày sinh</label>
-                                                                            <input type="date" id="birthday" name="birthday" class="form-control mb-4">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label style="float: left;">Giới tính</label>
-                                                                            <select name="gender">
-                                                                                <option value="true">Nam</option>
-                                                                                <option value="false">Nữ</option>
-                                                                            </select>
-                                                                        </div>
-
-                                                                        <!-- Sign in button -->
-                                                                        <button type="submit" id="submitRegister" class="btn btn-success btn-lg btn-block">Tạo tài khoản</button>
-
-                                                                        <p style="margin-bottom: -25px; font-size: 12px; line-height: 22px;">
-                                                                            Khi bạn nhấn Đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo
-                                                                            <a target="_blank" href="#" rel="noreferrer">
-                                                                                điều kiện sử dụng và chính sách của Nông sản Việt Nam
-                                                                            </a>.
-                                                                        </p>
-                                                                    }
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Panel 2 -->
-
+                                            <div class="checkout-cart">
+                                                <div class="price_content">
+                                                    <div class="cart-total-price">
+                                                        <span class="label">
+                                                            <i class="fa fa-check" style="color:blue; padding-right:5px"></i>
+                                                            Thêm giỏ hàng thành công
+                                                        </span>
                                                     </div>
-                                                    <!-- Tab panels -->
-
                                                 </div>
-                                                <!--Footer-->
-                                                <div class="modal-footer">
-                                                    <button type="button" id="btnClose" class="btn btn-outline-primary"
-                                                            data-dismiss="modal">
-                                                        Đóng
-                                                    </button>
+                                                <div class="min_cart_checkout">
+                                                    <a href="">Xem giỏ hàng và thanh toán</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Modal: isLogin -->
-                                    <!--Modal forgetPass-->
-                                    <div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" style="display: none;" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="smallmodalLabel">Quên mật khẩu?</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <form class="text-center" style="color: #757575; padding: 25px;" method="post">
-                                                    <div class="form-group">
-                                                        <label style="float: left;">Vui lòng cung cấp email đăng nhập để lấy lại mật khẩu.</label>
-                                                        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control mb-4" placeholder="Nhập email">
+                                    <div class="header_account">
+                                        @if (user != null)
+                                        {
+                                            <div class="account_inner">
+                                                Hi! <a href="#" style="color: green; font-size: 15px; font-style: italic;">@user.firstName</a>
+                                            </div>
+                                            <div class="content-setting-dropdown" style="display: none;">
+                                                <div class="language-selector-wrapper">
+                                                    <div class="language-selector">
+                                                        <ul>
+                                                            <li><a href=""><i class="fa fa-users" style="padding-right: 5px;"></i>Tài khoản</a></li>
+                                                            <li><a href=""><i class="fa fa-check" style="padding-right: 5px;"></i>Thanh toán</a></li>
+                                                            <li><a href="/logout"><i class="fa fa-sign-out" style="padding-right: 5px;"></i>Thoát tài khoản</a></li>
+                                                        </ul>
                                                     </div>
-                                                    <!-- Sign in button -->
-                                                    <button type="submit" id="btnSendMail" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Gửi</button>
-                                                </form>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" id="btnOpen" class="btn btn-outline-success" data-toggle="modal"
+                                                    data-target="#isLogin">
+                                                <i class="fa fa-user pr-2"></i>Đăng nhập
+                                            </button>
+                                        }
+                                        <!-- Modal: isLogin -->
+                                        <div class="modal fade" id="isLogin" tabindex="-1" role="dialog"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <!--Body-->
+                                                    <div class="modal-body">
+
+                                                        <!-- Nav tabs -->
+                                                        <ul class="nav nav-tabs md-tabs nav-justified primary-color"
+                                                            style="font-size: 20px;" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" data-toggle="tab"
+                                                                   href="#panel555" role="tab">
+                                                                    <i class="fa fa-user pr-2"></i>Đăng nhập
+                                                                </a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#panel666"
+                                                                   role="tab">
+                                                                    <i class="fa fa-address-book pr-2"></i>Tạo tài
+                                                                    khoản
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <!-- Nav tabs -->
+                                                        <!-- Tab panels -->
+                                                        <div class="tab-content">
+
+                                                            <!-- Panel 1 -->
+                                                            <div class="tab-pane fade in show active" id="panel555"
+                                                                 role="tabpanel">
+
+                                                                <!-- Nav tabs -->
+
+                                                                <div class="row">
+                                                                    <div class="container">
+                                                                        <form class="text-center" id="frmLogin" style="color: #757575; padding: 25px;" method="post">
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">E-mail</label>
+                                                                                <input type="email" id="loginEmail" name="loginEmail" class="form-control mb-4" placeholder="Nhập email">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">Mật khẩu</label>
+                                                                                <input type="password" id="loginPass" name="loginPass" class="form-control mb-4" placeholder="Nhập mật khẩu">
+                                                                            </div>
+
+                                                                            <div class="d-flex justify-content-around">
+                                                                                <div style="padding-bottom: 10px;">
+                                                                                    <!-- Forgot password -->
+                                                                                    <a href="" onclick="click_btnClose();" data-toggle="modal" data-target="#forgetPass">Quên mật khẩu?</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- Sign in button -->
+                                                                            <button type="submit" id="UserLogin" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Đăng nhập</button>
+                                                                            <a href="/Login/LoginFacebook" class="btn btn-block btn-social btn-facebook" style="padding-left: 125px; border-radius:5px">
+                                                                                <span class="fa fa-facebook"></span>
+                                                                                Đăng nhập bằng Facebook
+                                                                            </a>
+
+                                                                            <div id="gSignInWrapper" style="margin-top:8px">
+                                                                                <span class="label"></span>
+                                                                                <div id="customBtn">
+                                                                                    <a class="btn btn-block btn-social btn-google" style="padding-left: 133px; border-radius:5px; height:0%">
+                                                                                        <span class="fa fa-google"></span> Đăng nhập bằng Google
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Nav tabs -->
+
+                                                            </div>
+                                                            <!-- Panel 1 -->
+                                                            <!-- Panel 2 -->
+                                                            <div class="tab-pane fade" id="panel666" role="tabpanel">
+
+                                                                <div class="row">
+                                                                    <div class="container">
+                                                                        @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { id = "registerUser" }))
+                                                                        {
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">Họ và tên</label>
+                                                                                <input type="text" id="firstName" name="firstName" class="form-control mb-4" placeholder="Nhập Họ và tên">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">E-mail</label>
+                                                                                <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Nhập E-mail">
+                                                                                <span id="email_error" style="color:red"></span>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">Mật khẩu</label>
+                                                                                <input type="password" id="passWord" name="passWord" class="form-control mb-4" placeholder="Mật khẩu từ 6 đến 32 ký tự">
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">Ngày sinh</label>
+                                                                                <input type="date" id="birthday" name="birthday" class="form-control mb-4">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label style="float: left;">Giới tính</label>
+                                                                                <select name="gender">
+                                                                                    <option value="true">Nam</option>
+                                                                                    <option value="false">Nữ</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            <!-- Sign in button -->
+                                                                            <button type="submit" id="submitRegister" class="btn btn-success btn-lg btn-block">Tạo tài khoản</button>
+
+                                                                            <p style="margin-bottom: -25px; font-size: 12px; line-height: 22px;">
+                                                                                Khi bạn nhấn Đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo
+                                                                                <a target="_blank" href="#" rel="noreferrer">
+                                                                                    điều kiện sử dụng và chính sách của Nông sản Việt Nam
+                                                                                </a>.
+                                                                            </p>
+                                                                        }
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Panel 2 -->
+
+                                                        </div>
+                                                        <!-- Tab panels -->
+
+                                                    </div>
+                                                    <!--Footer-->
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="btnClose" class="btn btn-outline-primary"
+                                                                data-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Modal: isLogin -->
+                                        <!--Modal forgetPass-->
+                                        <div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="smallmodalLabel">Quên mật khẩu?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <form class="text-center" style="color: #757575; padding: 25px;" method="post">
+                                                        <div class="form-group">
+                                                            <label style="float: left;">Vui lòng cung cấp email đăng nhập để lấy lại mật khẩu.</label>
+                                                            <input type="email" id="confirmEmail" name="confirmEmail" class="form-control mb-4" placeholder="Nhập email">
+                                                        </div>
+                                                        <!-- Sign in button -->
+                                                        <button type="submit" id="btnSendMail" class="btn btn-success btn-lg btn-block" style="border-radius:5px">Gửi</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -283,8 +284,9 @@
                 </div>
             </div>
         </header>
-        <!--Header end-->
-
+    </div>
+    <!--Header end-->
+    <div class="product_page_tab ptb-100">
         @RenderBody()
 
         <!-- footer start -->
@@ -296,7 +298,7 @@
                         <div class="single_footer widget">
                             <div class="single_footer_widget_inner">
                                 <div class="footer_logo">
-                                    <a href="/"><img src="Asset/Client/img/logo/1.png" alt=""></a>
+                                    <a href="/"><img src="~/Asset/Client/img/logo/1.png" alt=""></a>
                                 </div>
                                 <div class="footer_content">
                                     <p>Address: Hà Mòn - Đăk Hà - Kon Tum</p>
@@ -402,7 +404,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-xs-12">
                             <div class="footer_mastercard text-right">
-                                <a href="#"><img src="Asset/Client/img/brand/payment.png" alt=""></a>
+                                <a href="#"><img src="~/Asset/Client/img/brand/payment.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -412,9 +414,6 @@
         </footer>
 
         <!-- footer end -->
-
-
-
     </div>
 
     <!-- modal area start -->
@@ -432,30 +431,30 @@
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="imgeone" role="tabpanel">
                                             <div class="product_tab_img">
-                                                <a href="#"><img src="Asset/Client/img/cart/nav12.jpg" alt=""></a>
+                                                <a href="#"><img src="~/Asset/Client/img/cart/nav12.jpg" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="imgetwo" role="tabpanel">
                                             <div class="product_tab_img">
-                                                <a href="#"><img src="Asset/Client/img/cart/nav11.jpg" alt=""></a>
+                                                <a href="#"><img src="~/Asset/Client/img/cart/nav11.jpg" alt=""></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="imgethree" role="tabpanel">
                                             <div class="product_tab_img">
-                                                <a href="#"><img src="Asset/Client/img/cart/nav13.jpg" alt=""></a>
+                                                <a href="#"><img src="~/Asset/Client/img/cart/nav13.jpg" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="products_tab_button  modals">
                                         <ul class="nav product_navactive" role="tablist">
                                             <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#imgeone" role="tab" aria-controls="imgeone" aria-selected="false"><img src="Asset/Client/img/cart/nav.jpg" alt=""></a>
+                                                <a class="nav-link active" data-toggle="tab" href="#imgeone" role="tab" aria-controls="imgeone" aria-selected="false"><img src="~/Asset/Client/img/cart/nav.jpg" alt=""></a>
                                             </li>
                                             <li>
-                                                <a class="nav-link" data-toggle="tab" href="#imgetwo" role="tab" aria-controls="imgetwo" aria-selected="false"><img src="Asset/Client/img/cart/nav1.jpg" alt=""></a>
+                                                <a class="nav-link" data-toggle="tab" href="#imgetwo" role="tab" aria-controls="imgetwo" aria-selected="false"><img src="~/Asset/Client/img/cart/nav1.jpg" alt=""></a>
                                             </li>
                                             <li>
-                                                <a class="nav-link button_three" data-toggle="tab" href="#imgethree" role="tab" aria-controls="imgethree" aria-selected="false"><img src="Asset/Client/img/cart/nav2.jpg" alt=""></a>
+                                                <a class="nav-link button_three" data-toggle="tab" href="#imgethree" role="tab" aria-controls="imgethree" aria-selected="false"><img src="~/Asset/Client/img/cart/nav2.jpg" alt=""></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -527,28 +526,31 @@
     </div>
     <!-- modal area end -->
     <!-- all js here -->
-    <script src="Asset/Client/js/vendor/jquery-1.12.0.min.js"></script>
+    @*<script src="~/Asset/Client/js/vendor/jquery-1.12.0.min.js"></script>*@
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>
-    <script src="Asset/Client/js/popper.js"></script>
-    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>*@
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     
-    <script src="Asset/Client/js/jquery.meanmenu.min.js"></script>
-    <script src="Asset/Client/js/isotope.pkgd.min.js"></script>
-    <script src="Asset/Client/js/imagesloaded.pkgd.min.js"></script>
-    <script src="Asset/Client/js/jquery.counterup.min.js"></script>
-    <script src="Asset/Client/js/waypoints.min.js"></script>
-    <script src="Asset/Client/js/ajax-mail.js"></script>
-    <script src="Asset/Client/js/owl.carousel.min.js"></script>
-    <script src="~/Asset/Client/js/jquery.validate.min.js"></script>
+    @*<script type="text/javascript" src="//code.jquery.com/jquery-1.8.3.js"></script>*@
+    <script src="~/Asset/Client/js/popper.js"></script>
+    <script src="~/Asset/Client/js/jquery.meanmenu.min.js"></script>
+    <script src="~/Asset/Client/js/isotope.pkgd.min.js"></script>
+    <script src="~/Asset/Client/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Asset/Client/js/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="~/Asset/Client/js/ajax-mail.js"></script>
+    <script src="~/Asset/Client/js/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 
     <!--tab data-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js"></script>
-    <script src="~/Asset/Client/js/lib_UI_jquery_js_jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="Asset/Client/js/plugins.js"></script>
-    <script src="Asset/Client/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/Asset/Client/js/plugins.js"></script>
+    <script src="~/Asset/Client/js/main.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
     <script src="~/Asset/Client/notify/notify.js"></script>
     <script src="~/Asset/Client/notify/PNotify.js"></script>
@@ -605,7 +607,7 @@
             $(this).addClass('active');
         });
 
-       
+
     </script>
 
 </body>

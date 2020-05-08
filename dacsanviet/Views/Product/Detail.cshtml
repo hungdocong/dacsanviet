@@ -1,379 +1,571 @@
 ﻿
 @{
-    ViewBag.Title = "Detail";
+    var product = (dacsanviet.Models.DTO.ProductDTO)ViewBag.getDetailProduct;
+    ViewBag.Title = product.productName;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var category = (dacsanviet.Models.Entity.ProductCategory)ViewBag.getCategory;
+    int discount = 0, subPrice = 0;
+    if(product.promotionPrice != null)
+    {
+        discount = (int)((1 - (product.promotionPrice / product.price)) * 100);
+        subPrice = (int)product.price - (int)product.promotionPrice;
+
+    }
+
+    var productSeen = Session["productSeen"] as List<dacsanviet.Models.DTO.ProductDTO>;
+    var getProductSameCategory = (List<dacsanviet.Models.DTO.ProductDTO>)ViewBag.getProductSameCategory;
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="product_tab_button">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li>
-                        <a class=" tav_past " id="home-tab" data-toggle="tab" href="#Description" role="tab"
-                           aria-controls="Description" aria-selected="true">Mô tả sản phẩm</a>
-                    </li>
-                    <li>
-                        <a class=" tav_past" id="profile-tab" data-toggle="tab" href="#details" role="tab"
-                           aria-controls="details" aria-selected="false">Thông tin chung</a>
-                    </li>
-                    <li>
-                        <a class=" tav_past active" id="contact-tab" data-toggle="tab" href="#Reviews"
-                           role="tab" aria-controls="Reviews" aria-selected="false">Đánh giá</a>
-                    </li>
-                </ul>
+@section jsSection{
+    
+    <script>
+        function btnTabImage(imgs) {
+            var expandImg = document.getElementById("expandedImg");
+            expandImg.src = imgs.src;
+            expandImg.parentElement.style.display = "block";
+        }
+    </script>
+    
+}
+
+<!--breadcrumb area start-->
+<div class="breadcrumb_container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">Trang chủ </a>
+                            <i class="fa fa-angle-double-right"></i>
+                        </li>
+                        <li>
+                            <a href="">@category.name</a>
+                            <i class="fa fa-angle-double-right"></i>
+                        </li>
+                        <li>@product.productName</li>
+                    </ul>
+                </nav>
             </div>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade " id="Description" role="tabpanel">
-                    <div class="product-description">
-                        <p>
-                            Nước Giải Khát Có Gas Wana Hương Yuzu (320ml/lon) với hương thơm đặc trưng của quả
-                            yuzu,
-                            vị chua thanh, ngọt vừa phải, hòa cùng độ nồng mà không cay, giúp tinh thần sảng
-                            khoái,
-                            tỉnh táo sau khi uống, thích hợp cho cuộc sống năng động.
-                        </p>
-                        <p>
-                            Ngoài hương vị độc đáo, Quả YUZU còn có nhiều lợi ích cho sức khoẻ
-                        <p>
-                            Giàu vitamin C và vitamin E , kali, canxi, magiê và đồng. Là sự lựa chọn tuyệt
-                            vời cho những người giảm cân.
-                        </p>
-                        <p>
-                            Chứa một số hoạt chất, bao gồm cả yuzunone, có tác dụng chống oxy hóa tiềm năng
-                            đối với cơ thể.
-                        </p>
-                        <p>Tăng cường tâm trạng, giảm viêm và cải thiện sức khỏe não bộ</p>
-                        <p>Tăng cường hệ thống miễn dịch Hỗ trợ giảm cân</p>
-                        <p>Giảm buồn nôn</p>
-                        <p>Giảm nguy cơ mắc các bệnh mãn tính</p>
-                        </p>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="details" role="tabpanel">
-                    <div class="product-details">
-                        <table id="chi-tiet" cellspacing="0"
-                               class="table table-bordered table-detail table-striped">
-                            <colgroup>
-                                <col style="width: 25%;">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <td rel="brand">Thương hiệu</td>
-                                    <td class="last">
-                                        <a href="http://tiki.vn/thuong-hieu/wana.html?_lc=Vk4wNDQwMDIwMDk%3D">WANA</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="brand_country">Xuất xứ thương hiệu</td>
-                                    <td class="last">
-                                        Việt Nam
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="thanh_phan">Thành phần</td>
-                                    <td class="last">
-                                        <ul>
-                                            <li>
-                                                Thành phần: Nước bão hòa CO2, đường mía, Axit citric, sodium
-                                                citrate, Vitamin C, Sucralose (E955), Acesulfam kali (E950),
-                                                Hương yuzu tổng hợp.
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="expiry_time">Hạn sử dụng</td>
-                                    <td class="last">
-                                        18 tháng kể từ ngày sản xuất
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="huong_dan_su_dung">Hướng dẫn sử dụng</td>
-                                    <td class="last">
-                                        <p>Sử dụng trực tiếp, ngon hơn khi sử dụng lạnh</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="huong_dan_bao_quan">Hướng dẫn bảo quản</td>
-                                    <td class="last">
-                                        <p>Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="capacity">Dung tích</td>
-                                    <td class="last">
-                                        320ml/lon
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="sku">SKU</td>
-                                    <td class="last">
-                                        2836801283346
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rel="quy_cach_dong_goi">Quy cách đóng gói</td>
-                                    <td class="last">
-                                        <p>1 lon 320ml</p>
-                                        <p>1 lốc 6 lon 320ml</p>
-                                        <p>1 khay 24 lon 320ml</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="tab-pane fade show active" id="Reviews" role="tabpanel">
-                    <div class="product_comments_block_tab">
-                        <div class="comment_clearfix">
-                            <div class="comment_author">
-
-
+        </div>
+    </div>
+</div>
+<!--breadcrumb area end-->
+<!-- primary block area -->
+<div class="table_primary_block pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="product-flags">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" role="tabpanel">
+                            <div class="product_tab_img">
+                                <a href="#"><img id="expandedImg" src="~/@product.productImage" alt="" style="height:350px"></a>
                             </div>
-                            <div class="comment_author_infos">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="product-customer-box">
+                        </div>
+                        @*<div class="tab-pane fade" id="tabtwo" role="tabpanel">
+                            <div class="product_tab_img">
+                                <a href="#"><img src="~/Asset/Client/img/company/logo-store.png" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tabthree" role="tabpanel">
+                            <div class="product_tab_img">
+                                <a href="#"><img src="~/@product.productImage" alt=""></a>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="products_tab_button">
+                        <ul class="nav product_navactive" role="tablist">
+                            <li class="active">
+                                <a class="nav-link">
+                                    <img src="~/@product.productImage" style="height:98px" alt="" onclick="btnTabImage(this);">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <img src="~/Asset/Client/img/product/10.jpg" style="height:98px" alt="" onclick="btnTabImage(this);">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <img src="~/Asset/Client/img/product/11.jpg" style="height:98px" alt="" onclick="btnTabImage(this);">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12">
+                <div class="product__details_content">
+                    <div class="demo_product">
+                        <h2>@product.productName</h2>
+                        <p>Cung cấp bởi: <a href="#" class="del-item">@product.name</a></p>
+                    </div>
+                    <div class="product_comments_block">
+                        <div class="comments_note clearfix">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        <div class="comments_advices">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                        Xem đánh giá (<span>1</span>)
+                                    </a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-pencil"></i>Viết đáng giá</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="current_price">
+                        @if (product.promotionPrice != null)
+                        {
+                            <h5 class="priceDetail">@product.promotionPrice.Value.ToString("N0") ₫</h5>
+                            <span class="price-label">Tiết kiệm: </span>
+                            <span id="span-discount-percent" class="discount-percent">@discount%</span>
+                            <span id="span-saving-price">
+                                (@subPrice.ToString("N0") ₫)
+                            </span>
+                            <p class="old-price-item" data-value="350000" id="p-listpirce">
+                                <span class="price-label">Giá thị trường:</span>
+                                <span class="price-label">@product.price.Value.ToString("N0") ₫</span>
+                            </p>
+                        }
+                        else
+                        {
+                            <h5 class="priceDetail">@product.price.Value.ToString("N0") ₫</h5>
+                        }
 
-                                            <div class="product-customer-content">
+                    </div>
+                    <div class="product_information">
+                        <div id="product_description_short">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga eum minus
+                                necessitatibus commodi veniam in a quibusdam voluptatem! Nihil, iste non eius amet
+                                culpa!
+                            </p>
+                        </div>
+                        <div class="product_variants">
+                            <div class="quickview_plus_minus">
+                                <span class="control_label">Số lượng</span>
+                                <div class="quickview_plus_minus_inner">
+                                    <div class="cart-plus-minus">
+                                        <input type="text" name="qtybutton" class="cart-plus-minus-box">
+                                    </div>
+                                    <div class="add_button">
+                                        <button type="submit">Thêm vào giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                                                <div class="clearfix"></div>
-                                                <h3 class="js-customer-h3">Gửi nhận xét của bạn</h3>
-                                                <div class="col-6">
+                            <div class="social-sharing">
+                                <span>Share</span>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="block-reassurance">
+                                <ul>
+                                    <li>
+                                        <img src="~/Asset/Client/img/cart/cart1.png" alt="">
+                                        <span>Thời gian bảo hành: 6 tháng</span>
+                                    </li>
+                                    <li>
+                                        <img src="~/Asset/Client/img/cart/cart2.png" alt="">
+                                        <span>
+                                            Vận chuyển nhanh, đóng gói chuẩn. HOTLINE: 1900 6035 (1.000đ/phút,
+                                            8-21h cả T7, CN)
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <img src="~/Asset/Client/img/cart/cart3.png" alt="">
+                                        <span>Đổi trả dễ dàng</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                                    <form action="" method="post" id="addReviewFrm"
-                                                          novalidate="novalidate" class="bv-form">
-                                                        <button type="submit" class="bv-hidden-submit"
-                                                                style="display: none; width: 0px; height: 0px;"></button>
-                                                        <input type="hidden" name="entity_pk_value"
-                                                               value="22250251" id="entity_pk_value">
-                                                        <input type="hidden" name="productset_id" value="145"
-                                                               id="productset_id">
-                                                        <div class="rate form-group has-feedback"
-                                                             id="rating_wrapper">
-                                                            <label>1. Đánh giá của bạn về sản phẩm này:</label>
-                                                            <div class="star_content clearfix">
-                                                                <ul>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                    <li><i class="fa fa-star"></i></li>
-                                                                </ul>
+<div class="product_page_tab ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_tab_button">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="active">
+                            <a class="tav_past" data-toggle="tab" href="#description" role="tab"
+                               aria-controls="description">Mô tả sản phẩm</a>
+                        </li>
+                        <li>
+                            <a class="tav_past" data-toggle="tab" href="#details" role="tab"
+                               aria-controls="details">Thông tin chung</a>
+                        </li>
+                        <li>
+                            <a class="tav_past" data-toggle="tab" href="#reviews"
+                               role="tab" aria-controls="reviews">Đánh giá</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane active" id="description" role="tabpanel">
+                        <div class="product-description">
+                            <p>
+                                Nước Giải Khát Có Gas Wana Hương Yuzu (320ml/lon) với hương thơm đặc trưng của quả
+                                yuzu,
+                                vị chua thanh, ngọt vừa phải, hòa cùng độ nồng mà không cay, giúp tinh thần sảng
+                                khoái,
+                                tỉnh táo sau khi uống, thích hợp cho cuộc sống năng động.
+                            </p>
+                            <p>
+                                Ngoài hương vị độc đáo, Quả YUZU còn có nhiều lợi ích cho sức khoẻ
+                            <p>
+                                Giàu vitamin C và vitamin E , kali, canxi, magiê và đồng. Là sự lựa chọn tuyệt
+                                vời cho những người giảm cân.
+                            </p>
+                            <p>
+                                Chứa một số hoạt chất, bao gồm cả yuzunone, có tác dụng chống oxy hóa tiềm năng
+                                đối với cơ thể.
+                            </p>
+                            <p>Tăng cường tâm trạng, giảm viêm và cải thiện sức khỏe não bộ</p>
+                            <p>Tăng cường hệ thống miễn dịch Hỗ trợ giảm cân</p>
+                            <p>Giảm buồn nôn</p>
+                            <p>Giảm nguy cơ mắc các bệnh mãn tính</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="details" role="tabpanel">
+                        <div class="product-details">
+                            <table id="chi-tiet" cellspacing="0"
+                                   class="table table-bordered table-detail table-striped">
+                                <colgroup>
+                                    <col style="width: 25%;">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td rel="brand">Sản phẩm của</td>
+                                        <td class="last">
+                                            <a href="">@product.name</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="brand_country">Xuất xứ thương hiệu</td>
+                                        <td class="last">
+                                            Việt Nam
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="thanh_phan">Thành phần</td>
+                                        <td class="last">
+                                            <ul>
+                                                <li>
+                                                    Thành phần: Nước bão hòa CO2, đường mía, Axit citric, sodium
+                                                    citrate, Vitamin C, Sucralose (E955), Acesulfam kali (E950),
+                                                    Hương yuzu tổng hợp.
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="expiry_time">Hạn sử dụng</td>
+                                        <td class="last">
+                                            18 tháng kể từ ngày sản xuất
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="huong_dan_su_dung">Hướng dẫn sử dụng</td>
+                                        <td class="last">
+                                            <p>Sử dụng trực tiếp, ngon hơn khi sử dụng lạnh</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="huong_dan_bao_quan">Hướng dẫn bảo quản</td>
+                                        <td class="last">
+                                            <p>Bảo quản nơi khô ráo thoáng mát, tránh ánh nắng trực tiếp</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="capacity">Dung tích</td>
+                                        <td class="last">
+                                            320ml/lon
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="sku">SKU</td>
+                                        <td class="last">
+                                            2836801283346
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rel="quy_cach_dong_goi">Quy cách đóng gói</td>
+                                        <td class="last">
+                                            <p>1 lon 320ml</p>
+                                            <p>1 lốc 6 lon 320ml</p>
+                                            <p>1 khay 24 lon 320ml</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="reviews" role="tabpanel">
+                        <div class="product_comments_block_tab">
+                            <div class="comment_clearfix">
+                                <div class="comment_author">
+
+
+                                </div>
+                                <div class="comment_author_infos">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="product-customer-box">
+
+                                                <div class="product-customer-content">
+
+                                                    <div class="clearfix"></div>
+                                                    <h3 class="js-customer-h3">Gửi nhận xét của bạn</h3>
+                                                    <div class="col-6">
+
+                                                        <form action="" method="post" id="addReviewFrm"
+                                                              novalidate="novalidate" class="bv-form">
+                                                            <button type="submit" class="bv-hidden-submit"
+                                                                    style="display: none; width: 0px; height: 0px;"></button>
+                                                            <input type="hidden" name="entity_pk_value"
+                                                                   value="22250251" id="entity_pk_value">
+                                                            <input type="hidden" name="productset_id" value="145"
+                                                                   id="productset_id">
+                                                            <div class="rate form-group has-feedback"
+                                                                 id="rating_wrapper">
+                                                                <label>1. Đánh giá của bạn về sản phẩm này:</label>
+                                                                <div class="star_content clearfix">
+                                                                    <ul>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                        <li><i class="fa fa-star"></i></li>
+                                                                    </ul>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="title form-group" id="title_wrapper">
-                                                            <label for="review_title">
-                                                                2. Tiêu đề của nhận
-                                                                xét:
-                                                            </label>
-                                                            <input type="text"
-                                                                   placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
-                                                                   name="title" id="review_title"
-                                                                   class="form-control input-sm">
-
-                                                        </div>
-
-                                                        <div class="review-content form-group has-feedback">
-                                                            <label for="review_detail">
-                                                                3. Viết nhận xét của bạn
-                                                                vào bên dưới:
-                                                            </label>
-                                                            <textarea placeholder="Nhận xét của bạn về sản phẩm này"
-                                                                      class="form-control" name="detail"
-                                                                      id="review_detail" cols="30" rows="10"
-                                                                      data-bv-field="detail"></textarea><i class="form-control-feedback"
-                                                                                                           data-bv-icon-for="detail"
-                                                                                                           style="display: none;"></i>
-                                                            <small class="help-block"
-                                                                   data-bv-validator="callback"
-                                                                   data-bv-for="detail"
-                                                                   data-bv-result="NOT_VALIDATED"
-                                                                   style="display: none;">
-                                                                Nội dung chứa ít nhất 50
-                                                                ký tự
-                                                            </small>
-                                                        </div>
-
-                                                        <div id="imageUploader">
-                                                            <div data-reactroot=""
-                                                                 class="review-file form-group">
-                                                                <input type="hidden" id="imageUploadPath"
-                                                                       name="images[][file_path]" value="">
-                                                                <input type="file" multiple="" id="fileSelector"
-                                                                       accept="image/*" style="display: none;">
-                                                                <label for="fileSelector">
-                                                                    Thêm hình sản phẩm nếu có (tối đa 5 hình):
-                                                                    <span class="button">Chọn hình</span>
+                                                            <div class="title form-group" id="title_wrapper">
+                                                                <label for="review_title">
+                                                                    2. Tiêu đề của nhận
+                                                                    xét:
                                                                 </label>
-                                                                <p class="error-wrap"></p>
-                                                                <div class="files"></div>
-                                                            </div>
-                                                        </div>
+                                                                <input type="text"
+                                                                       placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
+                                                                       name="title" id="review_title"
+                                                                       class="form-control input-sm">
 
-                                                        <div class="action">
-                                                            <div class="word-counter"></div>
-                                                            <div class="checkbox" style="display:none;">
-                                                                <label>
-                                                                    <input id="show_information" type="checkbox"
-                                                                           checked="" value="1"> Hiển thị thông tin
-                                                                    mua hàng trong phần nhận xét
+                                                            </div>
+
+                                                            <div class="review-content form-group has-feedback">
+                                                                <label for="review_detail">
+                                                                    3. Viết nhận xét của bạn
+                                                                    vào bên dưới:
                                                                 </label>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-default btn-add-review">Gửi nhận xét</button>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="product-detail">
-                                                        <div class="image col-5">
-                                                            <a href="">
-                                                                <img src="assets/img/cart/nav12.jpg"
-                                                                     style="width: 250px; height: 250px;" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="info col-7">
-                                                            <div class="title">
-                                                                Tay Cầm Chơi Game USB Nazar V70
-                                                                Trong Suốt - Hàng Nhập Khẩu (Màu ngẫu nhiên)
-                                                            </div>
-                                                            <div class="item-brand">
-                                                                <p>
-                                                                    <h6>
-                                                                        Thương hiệu:
-                                                                        <a target="_blank" href=""
-                                                                           style="color:  #007ff0;">Nazar</a>
-                                                                    </h6>
-                                                                    <div class="star_content clearfix">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <i class="fa fa-star"></i>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-star"></i>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-star"></i>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-star"></i>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-star"></i>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <a id="reiews-url" href="">
-                                                                        (1 đánh giá)
-                                                                    </a>
-                                                                </p>
-
+                                                                <textarea placeholder="Nhận xét của bạn về sản phẩm này"
+                                                                          class="form-control" name="detail"
+                                                                          id="review_detail" cols="30" rows="10"
+                                                                          data-bv-field="detail"></textarea><i class="form-control-feedback"
+                                                                                                               data-bv-icon-for="detail"
+                                                                                                               style="display: none;"></i>
+                                                                <small class="help-block"
+                                                                       data-bv-validator="callback"
+                                                                       data-bv-for="detail"
+                                                                       data-bv-result="NOT_VALIDATED"
+                                                                       style="display: none;">
+                                                                    Nội dung chứa ít nhất 50
+                                                                    ký tự
+                                                                </small>
                                                             </div>
 
-                                                        </div>
+                                                            <div id="imageUploader">
+                                                                <div data-reactroot=""
+                                                                     class="review-file form-group">
+                                                                    <input type="hidden" id="imageUploadPath"
+                                                                           name="images[][file_path]" value="">
+                                                                    <input type="file" multiple="" id="fileSelector"
+                                                                           accept="image/*" style="display: none;">
+                                                                    <label for="fileSelector">
+                                                                        Thêm hình sản phẩm nếu có (tối đa 5 hình):
+                                                                        <span class="button">Chọn hình</span>
+                                                                    </label>
+                                                                    <p class="error-wrap"></p>
+                                                                    <div class="files"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="action">
+                                                                <div class="word-counter"></div>
+                                                                <div class="checkbox" style="display:none;">
+                                                                    <label>
+                                                                        <input id="show_information" type="checkbox"
+                                                                               checked="" value="1"> Hiển thị thông tin
+                                                                        mua hàng trong phần nhận xét
+                                                                    </label>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-default btn-add-review">Gửi nhận xét</button>
+                                                            </div>
+                                                        </form>
+
                                                     </div>
-                                                    <ul style="float: left;">
-                                                        <li>
-                                                            Quý khách có thắc mắc về sản phẩm hoặc dịch vụ của
-                                                            Nông sản Việt Nam? Quý khách đang muốn khiếu nại
-                                                            hay phản hồi
-                                                            về đơn hàng đã mua?
-                                                        </li>
-                                                        <li>
-                                                            • Tham khảo thông tin thêm tại
-                                                            <a title="Thông tin hỗ trợ"
-                                                               href="http://hotro.tiki.vn/"
-                                                               target="_blank">Thông tin hỗ trợ</a>.
-                                                        </li>
-                                                        <li>
-                                                            • Liên hệ hotline
-                                                            <a href="tel:1900-6035">1900-6035</a>
-                                                            (1,000đ/phút), hoặc gửi thông tin về email <a href="mailto:hotro@tiki.vn">nongsanvn20@gmail.com</a>
-                                                            để
-                                                            được hỗ trợ ngay.
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <div class="col-6">
+                                                        <div class="product-detail">
+                                                            <div class="image col-5">
+                                                                <a href="">
+                                                                    <img src="~/@product.productImage"
+                                                                         style="width: 250px; height: 250px;" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="info col-7">
+                                                                <div class="title">
+                                                                    @product.productName
+                                                                </div>
+                                                                <div class="item-brand">
+                                                                    <p>
+                                                                        <h6>
+                                                                            Cung cấp bởi:
+                                                                            <a target="_blank" href=""
+                                                                               style="color:  #007ff0;">@product.name</a>
+                                                                        </h6>
+                                                                        <div class="star_content clearfix">
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <i class="fa fa-star"></i>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fa fa-star"></i>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fa fa-star"></i>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fa fa-star"></i>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <i class="fa fa-star"></i>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <a id="reiews-url" href="">
+                                                                            (1 đánh giá)
+                                                                        </a>
+                                                                    </p>
 
-                                <div class="blog_replay_wrapper">
-                                    <!-- <h4>HAVE 2 COMMENTS</h4> -->
-                                    <div class="single_blog_replay mb-50">
-                                        <div class="replay_img">
-                                            <a href="#"><img src="assets/img/cart/14.jpg" alt=""></a>
-                                        </div>
-                                        <div class="replay-info-wrapper">
-                                            <div class="replay-info">
-                                                <div class="replay-name-date">
-                                                    <h4>
-                                                        <a href="#">Tayeb rayed</a>
-                                                        <div class="comments_note clearfix">
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <span>Rất hài lòng !!!</span>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
-                                                    </h4>
+                                                        <ul style="float: left;">
+                                                            <li>
+                                                                Quý khách có thắc mắc về sản phẩm hoặc dịch vụ của
+                                                                Nông sản Việt Nam? Quý khách đang muốn khiếu nại
+                                                                hay phản hồi
+                                                                về đơn hàng đã mua?
+                                                            </li>
+                                                            <li>
+                                                                • Tham khảo thông tin thêm tại
+                                                                <a title="Thông tin hỗ trợ"
+                                                                   href="http://hotro.tiki.vn/"
+                                                                   target="_blank">Thông tin hỗ trợ</a>.
+                                                            </li>
+                                                            <li>
+                                                                • Liên hệ hotline
+                                                                <a href="tel:1900-6035">1900-6035</a>
+                                                                (1,000đ/phút), hoặc gửi thông tin về email <a href="mailto:hotro@tiki.vn">nongsanvn20@gmail.com</a>
+                                                                để
+                                                                được hỗ trợ ngay.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                    <span>July 15, 2016 at 2:39 am</span>
-                                                </div>
-                                                <div class="replay-btn">
-                                                    <a href="#">Reply</a>
-                                                </div>
+                                    <div class="blog_replay_wrapper">
+                                        <!-- <h4>HAVE 2 COMMENTS</h4> -->
+                                        <div class="single_blog_replay mb-50">
+                                            <div class="replay_img">
+                                                <a href="#"><img src="~/Asset/Client/img/cart/14.jpg" alt=""></a>
                                             </div>
-                                            <p>
-                                                Exercitation photo booth stumptown tote bag Banksy, elit small
-                                                batch freegan sed.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="single_blog_replay two mb-50">
-                                        <div class="replay_img">
-                                            <a href="#"><img src="assets/img/cart/15.jpg" alt=""></a>
-                                        </div>
-                                        <div class="replay-info-wrapper">
-                                            <div class="replay-info">
-                                                <div class="replay-name-date">
-                                                    <h4><a href="#">JOHN NGUYEN</a></h4>
-                                                    <span>July 15, 2016 at 2:39 am</span>
+                                            <div class="replay-info-wrapper">
+                                                <div class="replay-info">
+                                                    <div class="replay-name-date">
+                                                        <h4>
+                                                            <a href="#">Tayeb rayed</a>
+                                                            <div class="comments_note clearfix">
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                <span>Rất hài lòng !!!</span>
+                                                            </div>
+                                                        </h4>
+
+                                                        <span>July 15, 2016 at 2:39 am</span>
+                                                    </div>
+                                                    <div class="replay-btn">
+                                                        <a href="#">Reply</a>
+                                                    </div>
                                                 </div>
-                                                <div class="replay-btn">
-                                                    <a href="#">Reply</a>
-                                                </div>
+                                                <p>
+                                                    Exercitation photo booth stumptown tote bag Banksy, elit small
+                                                    batch freegan sed.
+                                                </p>
                                             </div>
-                                            <p>
-                                                Exercitation photo booth stumptown tote bag Banksy, elit small
-                                                batch freegan sed.
-                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="single_blog_replay">
-                                        <div class="replay_img">
-                                            <a href="#"><img src="assets/img/cart/16.jpg" alt=""></a>
-                                        </div>
-                                        <div class="replay-info-wrapper">
-                                            <div class="replay-info">
-                                                <div class="replay-name-date">
-                                                    <h4><a href="#">JOHN NGUYEN</a></h4>
-                                                    <span>July 15, 2016 at 2:39 am</span>
-                                                </div>
-                                                <div class="replay-btn">
-                                                    <a href="#">Reply</a>
-                                                </div>
+                                        <div class="single_blog_replay two mb-50">
+                                            <div class="replay_img">
+                                                <a href="#"><img src="~/Asset/Client/img/cart/15.jpg" alt=""></a>
                                             </div>
-                                            <p>
-                                                Exercitation photo booth stumptown tote bag Banksy, elit small
-                                                batch freegan sed.
-                                            </p>
+                                            <div class="replay-info-wrapper">
+                                                <div class="replay-info">
+                                                    <div class="replay-name-date">
+                                                        <h4><a href="#">JOHN NGUYEN</a></h4>
+                                                        <span>July 15, 2016 at 2:39 am</span>
+                                                    </div>
+                                                    <div class="replay-btn">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Exercitation photo booth stumptown tote bag Banksy, elit small
+                                                    batch freegan sed.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="single_blog_replay">
+                                            <div class="replay_img">
+                                                <a href="#"><img src="~/Asset/Client/img/cart/16.jpg" alt=""></a>
+                                            </div>
+                                            <div class="replay-info-wrapper">
+                                                <div class="replay-info">
+                                                    <div class="replay-name-date">
+                                                        <h4><a href="#">JOHN NGUYEN</a></h4>
+                                                        <span>July 15, 2016 at 2:39 am</span>
+                                                    </div>
+                                                    <div class="replay-btn">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <p>
+                                                    Exercitation photo booth stumptown tote bag Banksy, elit small
+                                                    batch freegan sed.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -384,715 +576,131 @@
             </div>
         </div>
     </div>
-</div>
-<!-- product page tab end -->
-<!--Features product area-->
-<div class="features_product pt-90">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="section_title text-left">
-                    <h3>Sản phẩm bạn đã xem</h3>
+    <!-- product page tab end -->
+    <!--Features product area-->
+    <div class="features_product pt-90">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title text-left">
+                        <h3>Sản phẩm bạn đã xem</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="features_product_active owl-carousel">
+            <div class="row">
+                <div class="features_product_active owl-carousel">
 
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Cheese Butter Burger</a></h4>
+                    @foreach (var item in productSeen)
+                    {
+                        var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
+                        <div class="col-lg-2">
+                            <div class="single__product">
+                                <div class="single_product__inner">
+                                    @if (item.promotionPrice != null)
+                                    {
+                                        discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
+                                        <span class="discount_price">-@discount%</span>
+                                    }
+                                    <div class="product_img">
+                                        <a href="@url">
+                                            <img src="~/@item.productImage" alt="">
+                                        </a>
                                     </div>
-                                    <div class="product_price">
-                                        <p>$75.66</p>
+                                    <div class="product__content text-center">
+                                        <div class="produc_desc_info">
+                                            <div class="product_title">
+                                                <h4><a href="@url">@item.productName</a></h4>
+                                            </div>
+                                            <div class="product_price">
+                                                @if (item.promotionPrice != null)
+                                                {
+                                                    <p>@item.promotionPrice.Value.ToString("N0") ₫</p>
+                                                    <p class="origin_price">@item.price.Value.ToString("N0") ₫</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>@item.price.Value.ToString("N0") ₫</p>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="product__hover">
+                                            <ul>
+                                                <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>
+                                                @*<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>*@
+                                                <li><a href="@url" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Sprite Yoga Straps1</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$65.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Wayfarer Messenger Bag</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$57.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Impulse Duffle</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$95.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/6.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Fusce nec facilisi</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$88.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/7.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Chaz Kangeroo Hoodie3</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$99.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/8.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Donec sem tellus</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$80.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/9.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Healthy Melt</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$90.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/10.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Mushroom Burger</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$45.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
+                   
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--Features product end-->
-<!--Features product area-->
-<div class="features_product pt-90">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="section_title text-left">
-                    <h3>Sản phẩm cùng loại</h3>
+    <!--Features product end-->
+    <!--Features product area-->
+    <div class="features_product pt-90">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title text-left">
+                        <h3>Sản phẩm cùng loại</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="features_product_active owl-carousel">
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Cheese Butter Burger</a></h4>
+            <div class="row">
+                <div class="features_product_active owl-carousel">
+                    @foreach (var item in getProductSameCategory)
+                    {
+                        var url = "/" + item.ProductCategoryMetatitle + "/" + item.metatitle + "-" + item.product_ID;
+                        <div class="col-lg-2">
+                            <div class="single__product">
+                                <div class="single_product__inner">
+                                    @if (item.promotionPrice != null)
+                                    {
+                                        discount = (int)((1 - (item.promotionPrice / item.price)) * 100);
+                                        <span class="discount_price">-@discount%</span>
+                                    }
+                                    <div class="product_img">
+                                        <a href="@url">
+                                            <img src="~/@item.productImage" alt="">
+                                        </a>
                                     </div>
-                                    <div class="product_price">
-                                        <p>$75.66</p>
+                                    <div class="product__content text-center">
+                                        <div class="produc_desc_info">
+                                            <div class="product_title">
+                                                <h4><a href="@url">@item.productName</a></h4>
+                                            </div>
+                                            <div class="product_price">
+                                                @if (item.promotionPrice != null)
+                                                {
+                                                    <p>@item.promotionPrice.Value.ToString("N0") ₫</p>
+                                                    <p class="origin_price">@item.price.Value.ToString("N0") ₫</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>@item.price.Value.ToString("N0") ₫</p>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="product__hover">
+                                            <ul>
+                                                <li><a href="javascript:void(0)" class="btn-addCart" data-id="@item.product_ID" data-quantity="1"><i class="ion-android-cart" title="Thêm vào giỏ hàng"></i></a></li>
+                                                @*<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>*@
+                                                <li><a href="@url" title="Chi tiết sản phẩm"><i class="ion-clipboard"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Sprite Yoga Straps1</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$65.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Wayfarer Messenger Bag</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$57.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Impulse Duffle</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$95.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/6.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Fusce nec facilisi</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$88.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/7.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Chaz Kangeroo Hoodie3</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$99.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/8.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Donec sem tellus</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$80.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/9.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Healthy Melt</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$90.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="single__product">
-                        <div class="single_product__inner">
-                            <span class="new_badge">new</span>
-                            <span class="discount_price">-5%</span>
-                            <div class="product_img">
-                                <a href="#">
-                                    <img src="assets/img/product/10.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="product__content text-center">
-                                <div class="produc_desc_info">
-                                    <div class="product_title">
-                                        <h4><a href="product-details.html">Mushroom Burger</a></h4>
-                                    </div>
-                                    <div class="product_price">
-                                        <p>$45.66</p>
-                                    </div>
-                                </div>
-                                <div class="product__hover">
-                                    <ul>
-                                        <li><a href="#"><i class="ion-android-cart"></i></a></li>
-                                        <li>
-                                            <a class="cart-fore" href="#" data-toggle="modal"
-                                               data-target="#my_modal" title="Quick View">
-                                                <i class="ion-android-open"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="product-details.html"><i class="ion-clipboard"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
+    <!--Features product end-->
 </div>
-<!--Features product end-->

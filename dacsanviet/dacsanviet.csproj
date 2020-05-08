@@ -227,6 +227,7 @@
   <ItemGroup>
     <Content Include="Asset\Client\css\animate.css" />
     <Content Include="Asset\Client\css\bootstrap-social.css" />
+    <Content Include="Asset\Client\css\bootstrap.css" />
     <Content Include="Asset\Client\css\bootstrap.min.css" />
     <Content Include="Asset\Client\css\bundle.css" />
     <Content Include="Asset\Client\css\chosen-sprite%402x.png" />
